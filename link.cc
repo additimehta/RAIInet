@@ -3,7 +3,7 @@
 using namespace std;
 
 
-Link::Link(String type, int strength, bool isRevealed, Player owner):
+Link::Link(string type, int strength, bool isRevealed, Player *owner):
     type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner} {}
 
 bool Link::operator==(const Link& other) const {
@@ -12,7 +12,7 @@ bool Link::operator==(const Link& other) const {
            this->strength == other.strength;
 }
 
-Link Link::battle(Link opponent) const {                        // compares strengths || could change this to either ref or return bool true = win false = lose
+Link Link::battle(const Link &opponent) const {                        // compares strengths || could change this to either ref or return bool true = win false = lose
     if (opponent.getStrength() > this->getStrength()) {
         return opponent;
     }
@@ -36,10 +36,10 @@ bool Link::getIsRevealed() const {
     return isRevealed;
 }
 
-Player Link::getOwner() const {
+Player *Link::getOwner() const {
     return owner;
 }
 
-String Link::getType() const {
+string Link::getType() const {
     return type;
 }

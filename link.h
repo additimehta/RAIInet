@@ -12,22 +12,22 @@ class Link {
     string type;
     int strength;
     bool isRevealed;
-    Player owner;
+    Player *owner;
 
     public:
         //getters
         int getStrength() const;
         bool getIsRevealed() const;
-        Player getOwner() const;
+        Player *getOwner() const;
         string getType() const;
 
-        Link(string type, int strength, bool isRevealed, Player owner);
+        Link(string type, int strength, bool isRevealed, Player *owner);
         bool operator==(const Link& other) const;
 
         void setIsRevealed(bool isRevealed);
         void setStrength(int strength);
 
-        Link battle(Link opponent) const;
+        Link battle(const Link &opponent) const;
 };
 
 #endif
