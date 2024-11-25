@@ -40,3 +40,7 @@ Link &Player::getLink(int LinkID) const {                          // LinkID sho
 Ability &Player::getAbility(int AbilityID) const {                 // abilityID should be 0-indexed
     return *(abilities.at(AbilityID));
 }
+
+int Ability::getAbilitiesCount() const {
+    return abilities.size();
+}

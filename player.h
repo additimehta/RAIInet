@@ -19,6 +19,7 @@ class Player {
         int getDownloadedViruses() const;
         Link &getLink(int LinkID) const;
         Ability &getAbility(int AbilityID) const;
+        int getAbilitiesCount() const;
 
         Player(int playerID, int downloadedData, int downloadedViruses);
         
@@ -26,4 +27,5 @@ class Player {
         void addAbility(unique_ptr<Ability> ability);
         void useAbility(int abilityID, Link targetLink);
         void useAbility(int abilityID, Cell targetCell);
+        
 };
