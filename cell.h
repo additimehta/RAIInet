@@ -8,18 +8,18 @@ using namespace std;
 
 
 class Cell {
-    Link link;
+    Link *link;
     bool isServerPort;
 
     public:
         //getters
-        Link getLink() const;
+        Link *getLink() const;
         bool getIsServerPort() const;
 
-        void placeLink(Link link);
+        void placeLink(Link *link);
         void removeLink();
 
-        Cell(Link link, bool isServerPort);
+        Cell(Link *link, bool isServerPort);
         Cell();
 };
 

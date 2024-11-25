@@ -28,8 +28,8 @@ class Player {
         
         void addLink(unique_ptr<Link> link);
         void addAbility(unique_ptr<Ability> ability);
-        void useAbility(int abilityID, Link targetLink);
-        void useAbility(int abilityID, Cell targetCell);
+        void useAbility(int abilityID, Link &targetLink);
+        void useAbility(int abilityID, Cell &targetCell);
         
 };
 

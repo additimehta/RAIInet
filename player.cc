@@ -13,12 +13,12 @@ void Player::addAbility(unique_ptr<Ability> ability) {             // take over 
     abilities.emplace_back(ability);
 }
 
-void Player::useAbility(int abilityID, Link targetLink) {          // abilityID should be 0-indexed
-    abilities.at(abilityID).use(targetLink);
+void Player::useAbility(int abilityID, Link &targetLink) {          // abilityID should be 0-indexed
+    abilities.at(abilityID)->use(targetLink);
 }
 
-void Player::useAbility(int abilityID, Cell targetCell) {          // abilityID should be 0-indexed
-    abilities.at(abilityID).use(targetCell);
+void Player::useAbility(int abilityID, Cell &targetCell) {          // abilityID should be 0-indexed
+    abilities.at(abilityID)->use(targetCell);
 }
 
 int Player::getPlayerID() const {

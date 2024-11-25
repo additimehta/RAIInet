@@ -18,13 +18,13 @@ void Board::initializeBoard() {
     }
 }
 
-void Board::moveLink(Link link, char d) {
+void Board::moveLink(Link *link, char d) {
     bool found = false;
     int currentRow = -1, currentCol = -1;
 
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            if (grid[i][j].getLink() == link) {  // using link comparator operator
+            if (grid[i][j].getLink() == link) {  // comparing addresses of links
                 currentRow = i;
                 currentCol = j;
                 found = true;

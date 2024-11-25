@@ -10,8 +10,8 @@ class Ability {
     Player *player;
     bool isUsed;
     public:
-        virtual void use(Link targetLink) {}
-        virtual void use(Cell targetCell) {}
+        virtual void use(Link &targetLink) {}
+        virtual void use(Cell &targetCell) {}
         virtual ~Ability() = 0;
 };
 
