@@ -1,3 +1,6 @@
+#ifndef _PLAYER_H_
+#define _PLAYER_H_
+
 #include <string>
 #include <vector>
 #include <memory>
@@ -29,3 +32,5 @@ class Player {
         void useAbility(int abilityID, Cell targetCell);
         
 };
+
+#endif

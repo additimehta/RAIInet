@@ -1,3 +1,6 @@
+#ifndef _LINK_H_
+#define _LINK_H_
+
 #include <string>
 #include <vector>
 #include <memory>
@@ -6,7 +9,7 @@
 using namespace std;
 
 class Link {
-    String type;
+    string type;
     int strength;
     bool isRevealed;
     Player owner;
@@ -16,14 +19,15 @@ class Link {
         int getStrength() const;
         bool getIsRevealed() const;
         Player getOwner() const;
-        String getType() const;
+        string getType() const;
 
-        Link(String type, int strength, bool isRevealed, Player owner);
+        Link(string type, int strength, bool isRevealed, Player owner);
         bool operator==(const Link& other) const;
 
         void setIsRevealed(bool isRevealed);
         void setStrength(int strength);
 
         Link battle(Link opponent) const;
-}
+};
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef _ABILITY_H_
+#define _ABILITY_H_
+
 #include <string>
 #include "link.h"
 #include "player.h"
@@ -11,3 +14,5 @@ class Ability {
         virtual void use(Cell targetCell) {}
         virtual ~Ability() = 0;
 };
+
+#endif

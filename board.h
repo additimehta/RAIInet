@@ -1,3 +1,6 @@
+#ifndef _BOARD_H_
+#define _BOARD_H_
+
 #include <string>
 #include <vector>
 #include "cell.h"
@@ -18,4 +21,6 @@ class Board {
         void initializeBoard();
         void moveLink(Link link, char d); //u d r l
 
-}
+};
+
+#endif

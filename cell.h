@@ -1,3 +1,6 @@
+#ifndef _CELL_H_
+#define _CELL_H_
+
 #include <memory>
 #include "link.h"
 
@@ -18,4 +21,6 @@ class Cell {
 
         Cell(Link link, bool isServerPort);
         Cell();
-}
+};
+
+#endif
