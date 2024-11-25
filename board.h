@@ -16,6 +16,6 @@ class Board {
         Board(int height, int width);
 
         void initializeBoard();
-        void moveLink(Link link, direction d); //u d r l
+        void moveLink(Link link, char d); //u d r l
 
 }
