@@ -41,6 +41,6 @@ Ability &Player::getAbility(int AbilityID) const {                 // abilityID 
     return *(abilities.at(AbilityID));
 }
 
-int Ability::getAbilitiesCount() const {
+int Player::getAbilitiesCount() const {
     return abilities.size();
 }
