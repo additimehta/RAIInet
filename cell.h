@@ -19,6 +19,8 @@ class Cell {
         void placeLink(Link *link);
         void removeLink();
 
+        bool setIsServerPort(bool c);
+
         Cell(Link *link, bool isServerPort);
         Cell();
 };
