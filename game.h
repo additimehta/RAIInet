@@ -32,7 +32,7 @@ class Game: public Subject {
         bool processCommand(std::string command);        // returns true if successful, otherwise false
         void switchTurn();
         void initializeBoard();
-        void moveLink(Link *link, char d);
+        bool moveLink(Link *link, char d);              // returns true if move was successful, false if not
         void initalizeLinks(std::unique_ptr<Player>& player);
 };
 
