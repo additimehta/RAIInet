@@ -17,6 +17,10 @@ int main() {
     std::string command;
     std::vector<Observer*> observers;
     Game game;
+    Observer *observer1 = new TextObserver {&game, 0};
+    Observer *observer2 = new TextObserver {&game, 1};
+    observers.emplace_back(observer1);
+    observers.emplace_back(observer2);
     game.startGame();
     game.gameLoop();
     for (Observer* observer : observers) {
