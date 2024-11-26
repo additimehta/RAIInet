@@ -44,3 +44,10 @@ Ability *Player::getAbility(int AbilityID) const {                 // abilityID 
 int Player::getAbilitiesCount() const {
     return abilities.size();
 }
+
+void Player::setDownloadedData(int i) {
+    downloadedData = i;
+}
+void Player::setDownloadedViruses(int i) {
+    downloadedViruses = i;
+}
