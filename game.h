@@ -29,7 +29,7 @@ class Game: public Subject {
         ~Game();
 
         void startGame();
-        bool processCommand(std::string command);        // returns true if successful, otherwise false
+        void gameLoop();       // returns true if successful, otherwise false
         void switchTurn();
         void initializeBoard();
         bool moveLink(Link *link, char d);              // returns true if move was successful, false if not

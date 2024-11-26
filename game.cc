@@ -1,5 +1,7 @@
 #include "game.h"
+#include "textobserver.h"
 #include <sstream>
+
 
 using namespace std;
 
@@ -206,62 +208,51 @@ void Game::switchTurn() {       // need to add funcitonality to only iterate ove
     }
 }
 
-bool Game::processCommand(string command) {
-    std::istringstream iss(command);
-    std::string action;
-    iss >> action;
-    if (action == "move") {
-        char linkChar;
-        char direction;
-        iss >> linkChar >> direction;
-        if (iss.fail()) {
-            return false;
-        }
-        Link *link = charToLink(linkChar);
-        moveLink(link, direction);
-    }
-    else if (action == "abilities") {
-        // display abilities to display
-    }
-    else if (action == "ability") {
-        int abilityID;
-        iss >> abilityID;
-        if (iss.fail()) {
-            return false;
-        }
+void Game::gameLoop() {
+    std::string command;
 
-        int row;
-        int col;
-        char linkChar;
-        if (iss >> row >> col) {  // inputted a cell
-            Cell *cell = getBoard()->getCell(row, col);
-            getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
-        }
-        else if (iss >> linkChar) {
+        while(std::cin >> command) {
+
+        if (command == "move") {
+            char linkChar;
+            char direction;
+            std::cin >> linkChar >> direction;
             Link *link = charToLink(linkChar);
-            getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
+            moveLink(link, direction);
         }
-        else {
-            return false;
+        else if (command == "abilities") {
+            // display abilities to display
+        }
+        else if (command == "ability") {
+            int abilityID;
+            std::cin >> abilityID;
+        
+
+            int row;
+            int col;
+            char linkChar;
+            if (std::cin >> row >> col) {  // inputted a cell
+                Cell *cell = getBoard()->getCell(row, col);
+                getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
+            }
+            else if (std::cin >> linkChar) {
+                Link *link = charToLink(linkChar);
+                getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
+            }
+            
+        }
+        else if (command == "board") {
+            // display board
+        }
+        else if (command == "sequence") {
+            string file;
+            std::cin >> file;
+            // execute sequence inside file
+        }
+        else if (command == "quit") {
+            // quit game (return false?)
         }
     }
-    else if (action == "board") {
-        // display board
-    }
-    else if (action == "sequence") {
-        string file;
-        iss >> file;
-        if (iss.fail() || file.empty()) {
-            return false;
-        }
-        // execute sequence inside file
-    }
-    else if (action == "quit") {
-        // quit game (return false?)
-    }
-    else {
-        return false;
-    }
-    return true;
+
 }
 
