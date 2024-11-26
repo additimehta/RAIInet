@@ -256,6 +256,7 @@ void Game::gameLoop() {
         }
         else if (command == "board") {
             // auto* textObserver = new TextObserver(this, 1);
+            // textObserver->attach();
             // observers.emplace_back(textObserver);
         }
         else if (command == "sequence") {
