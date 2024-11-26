@@ -12,6 +12,10 @@ void Cell::removeLink() {
     this->link = nullptr;
 }
 
+bool Cell::setIsServerPort(bool c) {
+    this->isServerPort = c;
+}
+
 Link *Cell::getLink() const {
     return link;
 }

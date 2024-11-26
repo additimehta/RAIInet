@@ -22,3 +22,5 @@ void Subject::notifyObservers() {
     obs->notify();
   }
 }
+
+Subject::~Subject() {}
