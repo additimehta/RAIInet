@@ -30,11 +30,14 @@ class Player {
         
         void addLink(unique_ptr<Link> link);
         void addAbility(unique_ptr<Ability> ability);
+        void addAbilityString(const string &abilitiesstr);
         void useAbility(int abilityID, Link &targetLink);
         void useAbility(int abilityID, Cell &targetCell);
 
         void setDownloadedData(int i);
         void setDownloadedViruses(int i);
+
+
         
 };
 

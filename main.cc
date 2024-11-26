@@ -37,10 +37,13 @@ int main(int argc, char* argv[]) {
     
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
+        
         if (arg == "-ability1" && i + 1 < argc) {
             abilities1 = argv[++i];
+
         } else if (arg == "-ability2" && i + 1 < argc) {
             abilities2 = argv[++i];
+
         } else if (arg == "-link1" && i + 1 < argc) {
             vector<string> links = parseLinks(argv[++i]);
             if (links.size() == 8) { // valid links in file

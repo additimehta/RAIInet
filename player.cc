@@ -13,6 +13,15 @@ void Player::addAbility(unique_ptr<Ability> ability) {             // take over 
     abilities.emplace_back(std::move(ability));
 }
 
+
+void Player::addAbilityString(const string &a) {
+    for(size_t i = 0; i < a.size(); i++) {
+        if(a[i] == 'P') {
+            addAbility(std::make_unique<Polarize>(this));
+        }
+    }
+}
+
 void Player::useAbility(int abilityID, Link &targetLink) {          // abilityID should be 0-indexed
     abilities.at(abilityID)->use(targetLink);
 }
