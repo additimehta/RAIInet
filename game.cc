@@ -12,8 +12,8 @@ Game::~Game() {}
 void Game::startGame() {
     board = std::make_unique<Board>(8, 8);
     void initializeBoard();
-    players.push_back(std::make_unique<Player>(1));
-    players.push_back(std::make_unique<Player>(2));
+    players.push_back(std::make_unique<Player>(1, 0, 0));
+    players.push_back(std::make_unique<Player>(2, 0, 0));
 
     initalizeLinks(players[0]);
     initalizeLinks(players[1]);
@@ -80,7 +80,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
     if (!found) {
         return false;
     }
-    
+
     int newRow = currentRow;
     int newCol = currentCol;
 
