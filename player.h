@@ -24,6 +24,8 @@ class Player {
         Ability *getAbility(int AbilityID) const;
         int getAbilitiesCount() const;
 
+        vector<unique_ptr<Link>>* getLinks();
+
         Player(int playerID, int downloadedData, int downloadedViruses);
         
         void addLink(unique_ptr<Link> link);
