@@ -5,9 +5,12 @@
 #include <string>
 
 class Game: public Subject {
+    vector<Observer*> observers;
     std::unique_ptr<Board> board;
     std::vector<std::unique_ptr<Player>> players;
     int currentPlayerIndex;
+    bool gameOver;
+
 
     public:
         //getters
@@ -18,8 +21,12 @@ class Game: public Subject {
 
         //ctor
         Game(); 
+        ~Game();
 
         void startGame();
         void processCommand(std::string command);
         void switchTurn();
+        void initializeBoard();
+        void moveLinks(Link *link, char d);
 };
+
