@@ -28,10 +28,10 @@ vector<string> parseLinks(const string &filename) {
 
 int main(int argc, char* argv[]) {
 
-    std::vector<Observer*> observers;
+    vector<Observer*> observers;
 
-    std::string abilities1 = "LFDSP";
-    std::string abilities2 = "LFDSP";
+    string abilities1 = "LFDSP";
+    string abilities2 = "LFDSP";
     vector<string> links1 = {"V1", "V2", "V3", "V4", "D1", "D2", "D3", "D4"};
     vector<string> links2 = {"V1", "V2", "V3", "V4", "D1", "D2", "D3", "D4"};
     
@@ -62,11 +62,12 @@ int main(int argc, char* argv[]) {
 
 
 
-    Game game;
+
+    Game game(abilities1, abilities2, links1, links2);
     game.startGame();
-    game.initalizeLinks(game.getPlayer(0), links1);
-    game.initalizeLinks(game.getPlayer(1), links2);
-    game.initializeBoard();
+   // game.initalizeLinks(game.getPlayer(0), links1);
+   // game.initalizeLinks(game.getPlayer(1), links2);
+   // game.initializeBoard();
     game.notifyObservers();
     game.gameLoop();
     for (Observer* observer : observers) {

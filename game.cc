@@ -5,12 +5,14 @@
 
 using namespace std;
 
-Game::Game(const string a1, const string a2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(1), gameOver(false) {
-    players.emplace_back(std::make_unique<Player>(1));
-    players.emplace_back(std::make_unique<Player>(2));
+Game::Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(1), gameOver(false) {
+    initializeBoard();
+    players.push_back(std::make_unique<Player>(1, 0, 0));
+    players.push_back(std::make_unique<Player>(2, 0, 0));
     initalizeAbilites(a1, a2);
-    initalizeLinks(players[0]);
-    initalizeLinks(players[1]);
+    initalizeLinks(players[0].get(), links1);
+    initalizeLinks(players[1].get(), links2);
+
 
 }//work on the game ctor 
 
@@ -20,10 +22,14 @@ Game::Game(const string a1, const string a2) : board(std::make_unique<Board>(8, 
 
 Game::~Game() {}
 
+
+/*
 void Game::startGame() {
     players.push_back(std::make_unique<Player>(1, 0, 0));
     players.push_back(std::make_unique<Player>(2, 0, 0));
 }
+
+*/
 
 void Game::initalizeLinks(Player *player, vector<string> linksString) {
     for (int i = 0; i < 8; ++i) {

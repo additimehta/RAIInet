@@ -34,10 +34,10 @@ class Game: public Subject {
         void addPlayer(std::unique_ptr<Player> player);   // take over ownership of player
 
         //ctor
-        Game(const string a1, const string a2); 
+        Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2); 
         ~Game();
 
-        void startGame();
+        //void startGame();
         void gameLoop();       // returns true if successful, otherwise false
         void switchTurn();
         void initializeBoard();
