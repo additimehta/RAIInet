@@ -12,9 +12,11 @@ class Game: public Subject {
     public:
         //getters
         Board *getBoard() const;
-        Player *getPlayer(int id) const;
+        Player *getPlayer(const int playerID) const;
         int getPlayerCount() const;
         int getCurrentPlayerIndex() const;
+
+        void addPlayer(std::unique_ptr<Player> player);   // take over ownership of player
 
         //ctor
         Game(); 
