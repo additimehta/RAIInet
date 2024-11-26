@@ -1,4 +1,4 @@
-#include "board.h"
+ #include "board.h"
 
 using namespace std;
 
@@ -13,7 +13,11 @@ Cell Board::getCell(int row, int col) {
 void Board::initializeBoard() {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            grid[i][j] = Cell();
+            if((i == 0 && j == 3 ) || (i == 0 && j == 4 ) || (i == 7 && j == 4 ) || (i == 7 && j == 3 )) {                  //hardcode: server ports
+                grid[i][j] = Cell(nullptr, true);
+            } else {
+                grid[i][j] = Cell(nullptr, false);
+            }
         }
     }
 }
@@ -22,7 +26,7 @@ void Board::moveLink(Link *link, char d) {
     bool found = false;
     int currentRow = -1, currentCol = -1;
 
-    for (int i = 0; i < height; ++i) {
+    for (int i = 0; i < height; ++i) {                                                        // finding where the selecting link is
         for (int j = 0; j < width; ++j) {
             if (grid[i][j].getLink() == link) {  // comparing addresses of links
                 currentRow = i;
@@ -35,15 +39,29 @@ void Board::moveLink(Link *link, char d) {
     int newRow = currentRow;
     int newCol = currentCol;
 
-
-    switch (d) {
+    switch (d) {                                                                              // calculating position where link wants to move
         case 'u': newRow--; break;
         case 'd': newRow++; break;
         case 'l': newCol--; break;
         case 'r': newCol++; break;
     }
 
-    grid[currentRow][currentCol].removeLink();
-    grid[newRow][newCol].placeLink(link);
+    if(newCol < 0 || newCol > 7) {                                                             // check if position is out of bounds
+        newRow = currentRow;
+        newCol = currentCol; // moving out of bounds
+    }
+
+    if(newRow < 0 || newRow > 7 || grid[newRow][newCol].getIsServerPort()) {                  // check if position is a server port
+        grid[currentRow][currentCol].removeLink();
+    }
+
+    // checking for if the new row and column have a link, if so, battle the two and place the winner in the new cell.
+    if (grid[newRow][newCol].getLink() == nullptr) {
+        grid[newRow][newCol].placeLink(link);
+        grid[currentRow][currentCol].removeLink();
+    } else {
+        grid[newRow][newCol].placeLink([currentRow][currentCol].getLink().battle(grid[newRow][newCol]));
+        grid[currentRow][currentCol].removeLink();
+    }
 
 }
