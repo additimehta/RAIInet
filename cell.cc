@@ -7,9 +7,11 @@ Cell::Cell(): link{nullptr}, isServerPort{false}, owner{'.'} {}
 
 void Cell::placeLink(Link *link) {
     this->link = link;
+    this->owner = link->getLetter();
 }
 void Cell::removeLink() {
     this->link = nullptr;
+    this->owner = '.';
 }
 
 void Cell::setIsServerPort(bool c) {

@@ -3,8 +3,8 @@
 using namespace std;
 
 
-Link::Link(string type, int strength, bool isRevealed, Player *owner):
-    type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner} {}
+Link::Link(string type, int strength, bool isRevealed, Player *owner, char letter):
+    type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner}, letter{letter} {}
 
 bool Link::operator==(const Link& other) const {
     return this->type == other.type &&
@@ -40,4 +40,8 @@ Player *Link::getOwner() const {
 
 string Link::getType() const {
     return type;
+}
+
+char Link::getLetter() const {
+    return letter;
 }

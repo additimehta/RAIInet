@@ -14,6 +14,7 @@ class Link {
     int strength;
     bool isRevealed;
     Player *owner;
+    char letter;
 
     public:
         //getters
@@ -21,8 +22,9 @@ class Link {
         bool getIsRevealed() const;
         Player *getOwner() const;
         string getType() const;
+        char getLetter() const;
 
-        Link(string type, int strength, bool isRevealed, Player *owner);
+        Link(string type, int strength, bool isRevealed, Player *owner, char letter);
         bool operator==(const Link& other) const;
 
         void setIsRevealed(bool isRevealed);
