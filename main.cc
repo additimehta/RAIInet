@@ -16,46 +16,9 @@
 int main() {
     std::string command;
     std::vector<Observer*> observers;
-
-    while(std::cin >> command) {
-        if(command == "move") {
-            char linkChar;
-            char direction;
-            std::cin >> linkChar >> direction;
-            if (iss.fail()) {
-                return false;
-            }
-            Link *link = charToLink(linkChar);
-            moveLink(link, direction);
-        }else if(command == "abilities") {
-            //display abiltiies
-        } else if (command == "ability") {
-            int abilityID;
-            std::cin >> abilityID;
-
-            int row;
-            int col;
-            char linkChar;
-            if (std::cin >> row >> col) {  // inputted a cell
-                Cell *cell = getBoard()->getCell(row, col);
-                getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
-            }
-            else if (std::cin >> linkChar) {
-                Link *link = charToLink(linkChar);
-                getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
-            }
-        }else if (command== "board") {
-        // display board
-        }else if (action == "sequence") {
-        string file;
-        std::cin >> file;
-        // execute sequence inside file
-        }else if (action == "quit") {
-            break;
-        }
-
-    }
-    
+    Game game;
+    game.startGame();
+    game.gameLoop();
     for (Observer* observer : observers) {
     delete observer;
   }
