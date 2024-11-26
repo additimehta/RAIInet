@@ -28,6 +28,12 @@ void Link::setStrength(int strength) {
     this->strength = strength;
 }
 
+void Link::setType(string type) {
+    if (type == "Virus" || type == "Data") {
+        this->type = type;
+    }
+}
+
 int Link::getStrength() const {
     return strength;
 }

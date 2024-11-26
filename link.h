@@ -26,6 +26,7 @@ class Link {
 
         void setIsRevealed(bool isRevealed);
         void setStrength(int strength);
+        void setType(string type);
 
         Link battle(const Link &opponent) const;
 };
