@@ -26,5 +26,4 @@ void Game::initalizeLinks(std::unique_ptr<Player>& player) {
     player->addLink(std::make_unique<Link>("V", 2, false, player.get()));
     player->addLink(std::make_unique<Link>("V", 3, false, player.get()));
     player->addLink(std::make_unique<Link>("V", 4, false, player.get()));
-
 }
