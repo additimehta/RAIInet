@@ -173,7 +173,6 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         // Remove the link from the current position
         board->getCell(currentRow, currentCol)->removeLink();
     }
-
 }
 
 int Game::checkWin() {
@@ -233,14 +232,15 @@ void Game::switchTurn() {       // need to add funcitonality to only iterate ove
 void Game::gameLoop() {
     std::string command;
 
-        while(std::cin >> command) {
+    while(std::cin >> command) {
 
         if (command == "move") {
             char linkChar;
             char direction;
             std::cin >> linkChar >> direction;
             Link *link = charToLink(linkChar);
-            moveLink(link, direction);
+            if (moveLink(link, direction)) notifyObservers();
+            else std::cout << "Move not valid";
         }
         else if (command == "abilities") {
             // display abilities to display
@@ -249,23 +249,23 @@ void Game::gameLoop() {
             int abilityID;
             std::cin >> abilityID;
         
-
             int row;
             int col;
             char linkChar;
-            if (std::cin >> row >> col) {  // inputted a cell
+            if (std::cin >> row >> col) {  // inputted a target cell
                 Cell *cell = getBoard()->getCell(row, col);
                 getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
             }
-            else if (std::cin >> linkChar) {
+            else if (std::cin >> linkChar) { // inputted a target link
                 Link *link = charToLink(linkChar);
                 getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
             }
-            
+            else {
+                std::cout << "Ability command not correct";
+            }
         }
         else if (command == "board") {
-            auto* textObserver = new TextObserver(this, 1);
-            observers.emplace_back(textObserver);
+            notifyObservers();
         }
         else if (command == "sequence") {
             string file;
@@ -273,12 +273,8 @@ void Game::gameLoop() {
             // execute sequence inside file
         }
         else if (command == "quit") {
-            // quit game (return false?)
+            break;
         }
-
         // add checkWin() here
     }
-
 }
-
-
