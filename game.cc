@@ -211,7 +211,7 @@ Link *Game::charToLink(char linkChar) {
 
 void Game::addPlayer(std::unique_ptr<Player> player) {
     int current_size = getPlayerCount();
-    players.emplace_back(player);
+    players.emplace_back(std::move(player));
 }
 
 void Game::switchTurn() {       // need to add funcitonality to only iterate over "alive" players
