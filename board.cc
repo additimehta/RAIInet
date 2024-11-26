@@ -3,10 +3,11 @@
 using namespace std;
 
 Board::Board(int height, int width) : height{height}, width{width} {
-    grid = vector<vector<unique_ptr<Cell>>>(height, vector<unique_ptr<Cell>>(width));
+    grid.resize(height);
     for (int i = 0; i < height; ++i) {
+        grid[i].resize(width);
         for (int j = 0; j < width; ++j) {
-            grid[i][j] = make_unique<Cell>();
+            grid[i][j] = std::make_unique<Cell>();
         }
     }
 }
