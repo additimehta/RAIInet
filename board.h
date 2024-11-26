@@ -15,11 +15,11 @@ class Board {
 
     public:
         Cell getCell(int row, int col);
+        
+        int getHeight();
+        int getWidth();
 
         Board(int height, int width);
-
-        void initializeBoard();
-        void moveLink(Link *link, char d); //u d r l
 
 };
 
