@@ -1,15 +1,16 @@
+#include <iostream>
 #include "textobserver.h"
 #include "game.h"
+#include "board.h"
 
 using namespace std;
 
-Textobserver(Game* game, playerID) : game(game), playerID(playerID);
+TextObserver::TextObserver(Game* game, int playerID) : game(game), playerID(playerID) {}
 
-void TextObserver::notify() override {
+
+void TextObserver::notify() {
     Player *player = game->getPlayer(playerID);
-    Player *opponenet = game->getPlayer(3 - playerID); // either 1 or 2
-
-    
+    Player *opponent = game->getPlayer(3 - playerID); // either 1 or 2
 
     cout << "Player " << playerID << ":" << endl;
     cout << "Downloaded: "<< player->getDownloadedData()<< 
@@ -19,8 +20,8 @@ void TextObserver::notify() override {
     char linkID = 'a';
     const auto& links = player->getLinks();
 
-    for(size_t i = 0; links.size(); ++i) {
-        cout << linkID << ": " << links[i]->getType() << links[i]->getStrenght();
+    for(size_t i = 0; i < links->size(); ++i) {
+        cout << linkID << ": " << (*links[i])->getType() << (*links[i])->getStrength();
         if(i == 4) {
             cout << endl;
         }else {
@@ -37,10 +38,10 @@ void TextObserver::notify() override {
     for(int row = 0; row < 8; row++) {
         for(int col = 0; col < 8; col++){
             Cell *cell = board.getCell(row, col);
-            if(cell->isServerPort) {
+            if(cell->getIsServerPort()) {
                 cout << "SS";
-            }else if(cell->link) {
-                cout << cell->owner;
+            }else if(cell->getLink()) {
+                cout << cell->getOwner();
             }else {
                 cout << ".";
             }
@@ -52,19 +53,18 @@ void TextObserver::notify() override {
 
     // Opponent Output
     cout << "Player " << 3 - playerID << ":" << endl;
-    cout << "Downloaded: "<< opponenet->getDownloadedData()<< 
-    "D" << opponenet->getDownloadedViruses() << "V " << endl;
-    cout << "Abilities: " << opponenet->getAbilitiesCount() << endl;
+    cout << "Downloaded: "<< opponent->getDownloadedData()<< 
+    "D" << opponent->getDownloadedViruses() << "V " << endl;
+    cout << "Abilities: " << opponent->getAbilitiesCount() << endl;
 
-    linkID = 'A';
-    count = 0;
+    char opplinkID = 'A';
     const auto& oppLinks = opponent->getLinks();
-    for(size_t i = 0; oppLinks.size(); ++i) {
+    for(size_t i = 0; i < oppLinks->size(); ++i) {
 
-        if(links[i].getisRevealed()) {
-            cout << linkID << ": " << oppLinks[i]->getType() << oppLinks[i]->getStrenght();
+        if((*oppLinks)[i]->getIsRevealed()) {
+            cout << opplinkID << ": " << (*oppLinks)[i]->getType() << (*oppLinks)[i]->getStrength();
         }else {
-            cout << linkID << ": ?";
+            cout << opplinkID << ": ?";
         }
         if(i == 4) {
             cout << endl;
@@ -72,7 +72,7 @@ void TextObserver::notify() override {
             cout << " ";
         }
 
-        linkID++;
+        opplinkID++;
     }
 
     cout << endl;

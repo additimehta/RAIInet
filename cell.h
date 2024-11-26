@@ -10,18 +10,20 @@ using namespace std;
 class Cell {
     Link *link;
     bool isServerPort;
+    char owner;
 
     public:
         //getters
         Link *getLink() const;
         bool getIsServerPort() const;
+        char getOwner() const;
 
         void placeLink(Link *link);
         void removeLink();
 
         bool setIsServerPort(bool c);
 
-        Cell(Link *link, bool isServerPort);
+       // Cell(Link *link, bool isServerPort, char owner);
         Cell();
 };
 

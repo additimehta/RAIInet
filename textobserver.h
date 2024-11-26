@@ -11,7 +11,7 @@ class TextObserver : public Observer {
     int playerID;
 
 public:
-    Textobserver(Game* game, playerID);
+    TextObserver(Game* game, int playerID);
     ~TextObserver() override = default;
     void notify() override;
 };
