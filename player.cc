@@ -6,11 +6,11 @@ Player::Player(int playerID, int downloadedData, int downloadedViruses):
     playerID {playerID}, downloadedData {downloadedData}, downloadedViruses {downloadedViruses}, links {}, abilities {} {}
 
 void Player::addLink(unique_ptr<Link> link) {                      // take over ownership of link
-    links.emplace_back(link);
+    links.emplace_back(std::move(link));
 }
 
 void Player::addAbility(unique_ptr<Ability> ability) {             // take over ownership of ability
-    abilities.emplace_back(ability);
+    abilities.emplace_back(std::move(ability));
 }
 
 void Player::useAbility(int abilityID, Link &targetLink) {          // abilityID should be 0-indexed
