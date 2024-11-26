@@ -11,7 +11,7 @@ Game::~Game() {}
 
 void Game::startGame() {
     board = std::make_unique<Board>(8, 8);
-    void initializeBoard();
+    initializeBoard();
     players.push_back(std::make_unique<Player>(1, 0, 0));
     players.push_back(std::make_unique<Player>(2, 0, 0));
 
