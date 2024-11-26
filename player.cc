@@ -33,26 +33,18 @@ int Player::getDownloadedViruses() const {
     return downloadedViruses;
 }
 
-vector<unique_ptr<Link>>* Player::getLinks() {
-    return &links;
+Link &Player::getLink(int LinkID) const {                          // LinkID should be 0-indexed
+    return *(links.at(LinkID));
 }
 
-Link *Player::getLink(int LinkID) const {                          // LinkID should be 0-indexed
-    return links.at(LinkID).get();
-}
-
-Ability *Player::getAbility(int AbilityID) const {                 // abilityID should be 0-indexed
-    return abilities.at(AbilityID).get();
+Ability &Player::getAbility(int AbilityID) const {                 // abilityID should be 0-indexed
+    return *(abilities.at(AbilityID));
 }
 
 int Player::getAbilitiesCount() const {
     return abilities.size();
 }
 
-void Player::setDownloadedData(int i) {
-    this->downloadedData = i;
-}
-
-void Player::setDownloadedViruses(int i) {
-    this->downloadedViruses = i;
+std::vector<std::unique_ptr<Link>>* getLinks() {
+        return &links; 
 }

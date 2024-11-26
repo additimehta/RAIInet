@@ -21,7 +21,7 @@ void TextObserver::notify() {
     const auto& links = player->getLinks();
 
     for(size_t i = 0; i < links->size(); ++i) {
-        cout << linkID << ": " << links[i]->getType() << links[i]->getStrength();
+        cout << linkID << ": " << links[i].getType() << links[i].getStrength();
         if(i == 4) {
             cout << endl;
         }else {
