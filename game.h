@@ -22,4 +22,6 @@ class Game: public Subject {
         void startGame();
         void processCommand(std::string command);
         void switchTurn();
+        void initializeBoard();
+        void moveLinks(Link *link, char d);
 };
