@@ -10,25 +10,17 @@ Game::Game() : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), game
 Game::~Game() {}
 
 void Game::startGame() {
-    board = std::make_unique<Board>(8, 8);
-    initializeBoard();
     players.push_back(std::make_unique<Player>(1, 0, 0));
     players.push_back(std::make_unique<Player>(2, 0, 0));
-
-    initalizeLinks(players[0]);
-    initalizeLinks(players[1]);
-    notifyObservers();
 }
 
-void Game::initalizeLinks(std::unique_ptr<Player>& player) {
-    player->addLink(std::make_unique<Link>("D", 1, false, player.get()));
-    player->addLink(std::make_unique<Link>("D", 2, false, player.get()));
-    player->addLink(std::make_unique<Link>("D", 3, false, player.get()));
-    player->addLink(std::make_unique<Link>("D", 4, false, player.get()));
-    player->addLink(std::make_unique<Link>("V", 1, false, player.get()));
-    player->addLink(std::make_unique<Link>("V", 2, false, player.get()));
-    player->addLink(std::make_unique<Link>("V", 3, false, player.get()));
-    player->addLink(std::make_unique<Link>("V", 4, false, player.get()));
+void Game::initalizeLinks(Player *player, vector<string> linksString) {
+    for (int i = 0; i < 8; ++i) {
+        string link = linksString[i];
+        string type(1, link[0]);
+        int strength = link[1] - '0';
+        player->addLink(std::make_unique<Link>(type, strength, false, player));
+    }
 }
 
 void Game::initializeBoard() {

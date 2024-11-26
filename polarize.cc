@@ -1,10 +1,10 @@
 #include "polarize.h"
 
 void Polarize::use(Link &targetLink) {
-    if (targetLink.getType() == "Data") {
-        targetLink.setType("Virus");
+    if (targetLink.getType() == "D") {
+        targetLink.setType("V");
     }
     else {
-        targetLink.setType("Data");
+        targetLink.setType("D");
     }
 }

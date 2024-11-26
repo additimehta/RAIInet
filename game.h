@@ -40,7 +40,7 @@ class Game: public Subject {
         void switchTurn();
         void initializeBoard();
         bool moveLink(Link *link, char d);              // returns true if move was successful, false if not
-        void initalizeLinks(std::unique_ptr<Player>& player);
+        void initalizeLinks(Player *player, vector<string> linksString);
         int checkWin();                                 // 0 = no win, 1 = player one wins, 2 = player two wins
 };
 
