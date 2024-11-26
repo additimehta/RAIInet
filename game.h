@@ -1,10 +1,11 @@
-#include "subject.h"
-#include "board.h"
-#include "player.h"
 #include <vector>
 #include <memory>
 #include <string>
+#include "subject.h"
+#include "board.h"
+#include "player.h"
 #include "link.h"
+
 
 class Game: public Subject {
     vector<Observer*> observers;
