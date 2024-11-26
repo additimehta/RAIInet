@@ -46,5 +46,5 @@ int Player::getAbilitiesCount() const {
 }
 
 std::vector<std::unique_ptr<Link>> &Player::getLinks() const {
-        return links; 
+    return links; 
 }
