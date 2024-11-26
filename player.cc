@@ -6,7 +6,7 @@ Player::Player(int playerID, int downloadedData, int downloadedViruses):
     playerID {playerID}, downloadedData {downloadedData}, downloadedViruses {downloadedViruses}, links {}, abilities {} {}
 
 void Player::addLink(unique_ptr<Link> link) {                      // take over ownership of link
-    abilities.emplace_back(link);
+    links.emplace_back(link);
 }
 
 void Player::addAbility(unique_ptr<Ability> ability) {             // take over ownership of ability
