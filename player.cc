@@ -44,7 +44,3 @@ Ability &Player::getAbility(int AbilityID) const {                 // abilityID 
 int Player::getAbilitiesCount() const {
     return abilities.size();
 }
-
-std::vector<std::unique_ptr<Link>>* getLinks() {
-        return &links; 
-}
