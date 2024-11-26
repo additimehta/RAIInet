@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include "link.h"
+#include "cell.h"
 
 using namespace std;
 
