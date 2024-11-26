@@ -1,4 +1,7 @@
 #include "game.h"
+#include <sstream>
+
+using namespace std;
 
 Game::Game() : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false) {}
 
@@ -13,7 +16,6 @@ void Game::startGame() {
     initalizeLinks(players[0]);
     initalizeLinks(players[1]);
     notifyObservers();
-
 }
 
 void Game::initalizeLinks(std::unique_ptr<Player>& player) {
@@ -27,94 +29,107 @@ void Game::initalizeLinks(std::unique_ptr<Player>& player) {
     player->addLink(std::make_unique<Link>("V", 4, false, player.get()));
 }
 
-void Game::initializeBoard() {
-    int height = board->getHeight();
-    int width = board->getWidth();
 
-    for (int i = 0; i < height; ++i) {
-        for (int j = 0; j < width; ++j) {
-            Cell *cell = board->getCell(i, j);
-            if ((i == 0 && j == 3) || (i == 0 && j == 4) || (i == 7 && j == 4) || (i == 7 && j == 3)) { // Server ports
-                cell->setIsServerPort(true);
-            }
-        }
-    }
-
+Board *Game::getBoard() const {
+    return board.get();
 }
 
+Player *Game::getPlayer(const int playerID) const {   // playerID must be 0-indexed
+    return players.at(playerID).get();
+}
 
-/*void Game::moveLinks(Link *link, char d) {
-    bool found = false;
-    int currentRow = -1, currentCol = -1;
+int Game::getPlayerCount() const {
+    return players.size();
+}
 
-    for (int i = 0; i < board->getHeight(); ++i) {                                                        // finding where the selecting link is
-        for (int j = 0; j < width; ++j) {
-            if (board.getCell(i, j).getLink() == link) {  // comparing addresses of links
-                currentRow = i;
-                currentCol = j;
-                found = true;
-            }
+int Game::getCurrentPlayerIndex() const {
+    return currentPlayerIndex;
+}
+
+Link *Game::charToLink(char linkChar) {
+    if ('a' <= linkChar && linkChar <= 'g') {
+        // player 1
+        int linkIndex = linkChar - 'a';
+        return getPlayer(0)->getLink(linkIndex);
+    }
+    else if ('A' <= linkChar && linkChar <= 'G') {
+        // player 2
+        int linkIndex = linkChar - 'a';
+        return getPlayer(1)->getLink(linkIndex);
+    }
+    else {
+        return nullptr;
+    }
+}
+
+void Game::addPlayer(std::unique_ptr<Player> player) {
+    int current_size = getPlayerCount();
+    players.emplace_back(player);
+}
+
+void Game::switchTurn() {       // need to add funcitonality to only iterate over "alive" players
+    currentPlayerIndex++;
+    if (currentPlayerIndex >= getPlayerCount()) {
+        currentPlayerIndex = 0;
+    }
+}
+
+bool Game::processCommand(string command) {
+    std::istringstream iss(command);
+    std::string action;
+    iss >> action;
+    if (action == "move") {
+        char linkChar;
+        char direction;
+        iss >> linkChar >> direction;
+        if (iss.fail()) {
+            return false;
+        }
+        Link *link = charToLink(linkChar);
+        moveLink(link, direction);
+    }
+    else if (action == "abilities") {
+        // display abilities to display
+    }
+    else if (action == "ability") {
+        int abilityID;
+        iss >> abilityID;
+        if (iss.fail()) {
+            return false;
+        }
+
+        int row;
+        int col;
+        char linkChar;
+        if (iss >> row >> col) {  // inputted a cell
+            Cell *cell = getBoard()->getCell(row, col);
+            getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
+        }
+        else if (iss >> linkChar) {
+            Link *link = charToLink(linkChar);
+            getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
+        }
+        else {
+            return false;
         }
     }
-
-    int newRow = currentRow;
-    int newCol = currentCol;
-
-    switch (d) {                                                                              // calculating position where link wants to move
-        case 'u': newRow--; break;
-        case 'd': newRow++; break;
-        case 'l': newCol--; break;
-        case 'r': newCol++; break;
+    else if (action == "board") {
+        // display board
     }
-
-    //move valid checking to its own method, so that the main class can tell player to try again if failed
-
-    if(newCol < 0 || newCol > 7) {                                                             // check if position is out of bounds
-        newRow = currentRow;
-        newCol = currentCol; // moving out of bounds
-    }
-
-
-    if(//player one) {
-        if (newRow < 0 || (board.getCell(newRow, newCol).getIsServerPort() && newRow == 0)) {
-            newRow = currentRow;
-            newCol = currentCol; // moving out of bounds
+    else if (action == "sequence") {
+        string file;
+        iss >> file;
+        if (iss.fail() || file.empty()) {
+            return false;
         }
-    } else {
-        if (newRow > 7 || (board.getCell(newRow, newCol).getIsServerPort() && newRow == 7)) {
-            newRow = currentRow;
-            newCol = currentCol; // moving out of bounds
-        }
+        // execute sequence inside file
     }
-    // add bounds to make sure link does not move into own server port & its own border
-
-
-
-    if(newRow < 0 || newRow > 7 || board.getCell(newRow, newCol).getIsServerPort()) {                  // check if position is a server port
-        board.getCell(currentRow, currentCol).removeLink();
-
-        if(board.getCell(newRow, newCol).getIsServerPort()) {
-            if(newRow == 0) {
-                //player1 download
-            } else {
-                //player2 download
-            }
-        }
-
-        if (newRow < 0) {
-            //player1 download
-        } else {
-            //player2 download
-        }
-
+    else if (action == "quit") {
+        // quit game (return false?)
     }
-
-    // checking for if the new row and column have a link, if so, battle the two and place the winner in the new cell.
-    if (board.getCell(newRow, newCol).getLink() == nullptr) {
-        board.getCell(newRow, newCol).placeLink(link);
-        board.getCell(currentRow, currentCol).removeLink();
-    } else {
-        board.getCell(newRow, newCol).placeLink(board.getCell(currentRow, currentCol).getLink().battle(board.getCell(newRow, newCol)));
-        board.getCell(currentRow, currentCol).removeLink();
+    else {
+        return false;
     }
-}*/
+    return true;
+}
+
