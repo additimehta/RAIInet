@@ -10,7 +10,6 @@ void Subject::attach(Observer* o) {
 void Subject::detach(Observer* o) {
   for (size_t i = 0; i < observers.size(); ++i) {
     if (observers[i] == o) {
-      delete observers[i];  
       observers.erase(observers.begin() + i);  
       return; 
     }

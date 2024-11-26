@@ -8,11 +8,11 @@
 class TextObserver : public Observer {
     Game* game;
     std::vector<std::vector<char>> gameBoard;
-    int playerID;
+    int playerID; // 0-indexed
 
 public:
     TextObserver(Game* game, int playerID);
-    ~TextObserver() override = default;
+    ~TextObserver() override;
     void notify() override;
 };
 

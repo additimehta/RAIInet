@@ -5,14 +5,14 @@
 
 using namespace std;
 
-TextObserver::TextObserver(Game* game, int playerID) : game(game), playerID(playerID) {}
+TextObserver::TextObserver(Game* game, int playerID) : game(game), playerID(playerID) {game->attach(this);}
 
 
 void TextObserver::notify() {
     Player *player = game->getPlayer(playerID);
-    Player *opponent = game->getPlayer(3 - playerID); // either 1 or 2
+    Player *opponent = game->getPlayer(1 - playerID); // either 0 or 1
 
-    cout << "Player " << playerID << ":" << endl;
+    cout << "Player " << player->getPlayerID() + 1 << ":" << endl;
     cout << "Downloaded: "<< player->getDownloadedData()<< 
     "D" << player->getDownloadedViruses() << "V " << endl;
 
@@ -42,7 +42,7 @@ void TextObserver::notify() {
         for(int col = 0; col < 8; col++){
             Cell *cell = board->getCell(row, col);
             if(cell->getIsServerPort()) {
-                cout << "SS";
+                cout << "S";
             }else if(cell->getLink()) {
                 cout << cell->getOwner();
             }else {
@@ -55,7 +55,7 @@ void TextObserver::notify() {
     cout << "========" << endl;
 
     // Opponent Output
-    cout << "Player " << 3 - playerID << ":" << endl;
+    cout << "Player " << opponent->getPlayerID() + 1 << ":" << endl;
     cout << "Downloaded: "<< opponent->getDownloadedData()<< 
     "D" << opponent->getDownloadedViruses() << "V " << endl;
     cout << "Abilities: " << opponent->getAbilitiesCount() << endl;
@@ -83,8 +83,9 @@ void TextObserver::notify() {
         opplinkID++;
     }
 
-    cout << endl;
+    cout << endl;   
+}
 
-
-    
+TextObserver::~TextObserver() {
+    game->detach(this);
 }
