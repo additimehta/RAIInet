@@ -10,6 +10,15 @@ Cell Board::getCell(int row, int col) {
     return grid[row][col];
 }
 
+int Board::getHeight() {
+    return height;
+}
+
+int Board::getWidth() {
+    return width;
+} 
+
+/*
 void Board::initializeBoard() {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
@@ -63,5 +72,5 @@ void Board::moveLink(Link *link, char d) {
         grid[newRow][newCol].placeLink([currentRow][currentCol].getLink().battle(grid[newRow][newCol]));
         grid[currentRow][currentCol].removeLink();
     }
-
 }
+*/
