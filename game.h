@@ -12,6 +12,8 @@
 #include "player.h"
 #include "link.h"
 
+using namespace std;
+
 
 class Game: public Subject {
     vector<Observer*> observers;
@@ -32,7 +34,7 @@ class Game: public Subject {
         void addPlayer(std::unique_ptr<Player> player);   // take over ownership of player
 
         //ctor
-        Game(); 
+        Game(const string a1, const string a2); 
         ~Game();
 
         void startGame();
@@ -41,6 +43,7 @@ class Game: public Subject {
         void initializeBoard();
         bool moveLink(Link *link, char d);              // returns true if move was successful, false if not
         void initalizeLinks(Player *player, vector<string> linksString);
+        void initalizeAbilites(string a1, string a2);
         int checkWin();                                 // 0 = no win, 1 = player one wins, 2 = player two wins
 };
 

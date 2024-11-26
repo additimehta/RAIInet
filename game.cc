@@ -8,11 +8,14 @@ using namespace std;
 Game::Game(const string a1, const string a2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(1), gameOver(false) {
     players.emplace_back(std::make_unique<Player>(1));
     players.emplace_back(std::make_unique<Player>(2));
-    initalizeAbilities(a1, a2);
+    initalizeAbilites(a1, a2);
     initalizeLinks(players[0]);
     initalizeLinks(players[1]);
 
 }//work on the game ctor 
+
+
+
 
 
 Game::~Game() {}
@@ -28,8 +31,13 @@ void Game::initalizeLinks(Player *player, vector<string> linksString) {
         string type(1, link[0]);
         int strength = link[1] - '0';
         player->addLink(std::make_unique<Link>(type, strength, false, player));
+    }
 }
-}
+
+void G
+
+
+
 
 void Game::initializeBoard() {
     int height = board->getHeight();
