@@ -160,8 +160,16 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         board->getCell(currentRow, currentCol)->removeLink();
     }
 
-    //!!!!!!!!!!!! need to check for win after moving !!!!!!!!!!!!!!!!!
+}
 
+int Game::checkWin() {
+    if(this->players[1]->getDownloadedData() >= 4 || this->players[1]->getDownloadedViruses() >= 4) {           // 2 = player 2 wins
+        return 2;
+    } else if (this->players[0]->getDownloadedData() >= 4 || this->players[0]->getDownloadedViruses() >= 4) {    // 1 = player 1 wins
+        return 1;  
+    } else {
+        return 0;           // 0 = no one has won
+    }
 }
 
 Board *Game::getBoard() const {
@@ -252,6 +260,8 @@ void Game::gameLoop() {
         else if (command == "quit") {
             // quit game (return false?)
         }
+
+        // add checkWin() here
     }
 
 }
