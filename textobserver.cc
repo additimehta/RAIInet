@@ -18,9 +18,12 @@ void TextObserver::notify() {
 
     cout << "Abilities: " << player->getAbilitiesCount() << endl;
     char linkID = 'a';
-    const auto& links = player->getLinks();
+    vector<Link *> links;
+    for (int i = 0; i < 8; ++i) {
+        links.emplace_back(player->getLink(i));
+    };
 
-    for(size_t i = 0; i < links->size(); ++i) {
+    for(size_t i = 0; i < links.size(); ++i) {
         cout << linkID << ": " << links[i].getType() << links[i].getStrength();
         if(i == 4) {
             cout << endl;
@@ -58,11 +61,16 @@ void TextObserver::notify() {
     cout << "Abilities: " << opponent->getAbilitiesCount() << endl;
 
     char opplinkID = 'A';
-    const auto& oppLinks = opponent->getLinks();
-    for(size_t i = 0; i < oppLinks->size(); ++i) {
 
-        if((*oppLinks)[i]->getIsRevealed()) {
-            cout << opplinkID << ": " << (*oppLinks)[i]->getType() << (*oppLinks)[i]->getStrength();
+    vector<Link *> oppLinks;
+    for (int i = 0; i < 8; ++i) {
+        oppLinks.emplace_back(opponent->getLink(i));
+    };
+
+    for(size_t i = 0; i < oppLinks.size(); ++i) {
+
+        if(oppLinks[i]->getIsRevealed()) {
+            cout << opplinkID << ": " << oppLinks[i]->getType() << oppLinks[i]->getStrength();
         }else {
             cout << opplinkID << ": ?";
         }
