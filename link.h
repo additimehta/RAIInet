@@ -28,7 +28,6 @@ class Link {
         void setStrength(int strength);
         void setType(string type);
 
-        Link battle(const Link &opponent) const;
 };
 
 #endif

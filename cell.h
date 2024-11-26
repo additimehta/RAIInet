@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 class Cell {
     Link *link;
     bool isServerPort;
