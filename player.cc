@@ -37,6 +37,10 @@ Link &Player::getLink(int LinkID) const {                          // LinkID sho
     return *(links.at(LinkID));
 }
 
+vector<unique_ptr<Link>>* Player::getLinks() {
+    return &links;
+}
+
 Ability &Player::getAbility(int AbilityID) const {                 // abilityID should be 0-indexed
     return *(abilities.at(AbilityID));
 }
