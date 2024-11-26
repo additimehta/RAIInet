@@ -12,20 +12,18 @@ bool Link::operator==(const Link& other) const {
            this->strength == other.strength;
 }
 
-Link Link::battle(const Link &opponent) const {                        // compares strengths || could change this to either ref or return bool true = win false = lose
-    if (opponent.getStrength() > this->getStrength()) {
-        return opponent;
-    }
-    return *this;
-}
-
-
 void Link::setIsRevealed(bool isRevealed) {
     this->isRevealed = isRevealed;
 }
 
 void Link::setStrength(int strength) {
     this->strength = strength;
+}
+
+void Link::setType(string type) {
+    if (type == "Virus" || type == "Data") {
+        this->type = type;
+    }
 }
 
 int Link::getStrength() const {
