@@ -5,7 +5,15 @@
 
 using namespace std;
 
-Game::Game() : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false) {}
+Game::Game(const string a1, const string a2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(1), gameOver(false) {
+    players.emplace_back(std::make_unique<Player>(1));
+    players.emplace_back(std::make_unique<Player>(2));
+    initalizeAbilities(a1, a2);
+    initalizeLinks(players[0]);
+    initalizeLinks(players[1]);
+
+}//work on the game ctor 
+
 
 Game::~Game() {}
 
@@ -20,7 +28,7 @@ void Game::initalizeLinks(Player *player, vector<string> linksString) {
         string type(1, link[0]);
         int strength = link[1] - '0';
         player->addLink(std::make_unique<Link>(type, strength, false, player));
-    }
+}
 }
 
 void Game::initializeBoard() {
@@ -69,9 +77,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         if (found) break;
     }
 
-    if (!found) {
-        return false;
-    }
+    if (!found) return;
 
     int newRow = currentRow;
     int newCol = currentCol;
@@ -203,7 +209,7 @@ Link *Game::charToLink(char linkChar) {
 
 void Game::addPlayer(std::unique_ptr<Player> player) {
     int current_size = getPlayerCount();
-    players.emplace_back(std::move(player));
+    players.emplace_back(player);
 }
 
 void Game::switchTurn() {       // need to add funcitonality to only iterate over "alive" players
@@ -247,9 +253,8 @@ void Game::gameLoop() {
             
         }
         else if (command == "board") {
-            // auto* textObserver = new TextObserver(this, 1);
-            // textObserver->attach();
-            // observers.emplace_back(textObserver);
+            auto* textObserver = new TextObserver(this, 1);
+            observers.emplace_back(textObserver);
         }
         else if (command == "sequence") {
             string file;
@@ -264,4 +269,5 @@ void Game::gameLoop() {
     }
 
 }
+
 
