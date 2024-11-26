@@ -1,13 +1,20 @@
+<<<<<<< HEAD
+=======
 #ifndef _GAME_H_
 #define _GAME_H_
 
 #include "subject.h"
 #include "board.h"
 #include "player.h"
+>>>>>>> a6da68016be7ed2be7d8f611566593dba25a929d
 #include <vector>
 #include <memory>
 #include <string>
+#include "subject.h"
+#include "board.h"
+#include "player.h"
 #include "link.h"
+
 
 class Game: public Subject {
     vector<Observer*> observers;

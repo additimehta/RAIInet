@@ -9,6 +9,8 @@
 
 using namespace std;
 
+class Link;
+
 class Player {
     int playerID;
     int downloadedData;
