@@ -253,7 +253,7 @@ void Game::gameLoop() {
             
         }
         else if (command == "board") {
-            // display board
+            auto* textObserver = new TextObserver(this, 1);
         }
         else if (command == "sequence") {
             string file;
