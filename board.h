@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include "cell.h"
 
 using namespace std;
@@ -11,11 +12,11 @@ class Board {
     int height;
     int width;
 
-    vector<vector<Cell>> grid;
+    vector<vector<unique_ptr<Cell>>> grid;
 
     public:
-        Cell getCell(int row, int col);
-        
+        Cell* getCell(int row, int col);
+
         int getHeight();
         int getWidth();
 
