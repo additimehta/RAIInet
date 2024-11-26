@@ -5,11 +5,11 @@
 #include <vector>
 #include <memory>
 #include "link.h"
-#include "ability.h"
 
 using namespace std;
 
 class Link;
+class Ability;
 
 class Player {
     int playerID;

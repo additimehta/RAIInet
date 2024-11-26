@@ -3,8 +3,9 @@
 
 #include <string>
 #include "link.h"
-#include "player.h"
 #include "cell.h"
+
+class Player;
 
 class Ability {
     Player *player;

@@ -4,9 +4,10 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "player.h"
 
 using namespace std;
+
+class Player;
 
 class Link {
     string type;
