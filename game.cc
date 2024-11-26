@@ -111,29 +111,29 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         if (this->currentPlayerIndex == 0) {       // player 1
             if(board->getCell(newRow, newCol)->getIsServerPort()) { // if it is a server port, download to enemy
                 if(link->getType() == "V") {
-                    this->players[1]->setDownloadedViruses(link->getStrength() + this->players[1]->getDownloadedViruses());
+                    this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
                 } else {
-                    this->players[1]->setDownloadedData(link->getStrength()  + this->players[1]->getDownloadedData());
+                    this->players[1]->setDownloadedData(1  + this->players[1]->getDownloadedData());
                 }
             } else {
                 if(link->getType() == "V") {                            // else download to self
-                    this->players[0]->setDownloadedViruses(link->getStrength() + this->players[0]->getDownloadedViruses());
+                    this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
                 } else {
-                    this->players[0]->setDownloadedData(link->getStrength() + this->players[0]->getDownloadedData());
+                    this->players[0]->setDownloadedData(1 + this->players[0]->getDownloadedData());
                 }
             }
         } else {
             if(board->getCell(newRow, newCol)->getIsServerPort()) { // if it is a server port, download to enemy
                 if(link->getType() == "V") {
-                    this->players[0]->setDownloadedViruses(link->getStrength() + this->players[0]->getDownloadedViruses());
+                    this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
                 } else {
-                    this->players[0]->setDownloadedData(link->getStrength()  + this->players[0]->getDownloadedData());
+                    this->players[0]->setDownloadedData(1 + this->players[0]->getDownloadedData());
                 }
             } else {
                 if(link->getType() == "V") {                            // else download to self
-                    this->players[1]->setDownloadedViruses(link->getStrength() + this->players[1]->getDownloadedViruses());
+                    this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
                 } else {
-                    this->players[1]->setDownloadedData(link->getStrength() + this->players[1]->getDownloadedData());
+                    this->players[1]->setDownloadedData(1 + this->players[1]->getDownloadedData());
                 }
             }
         }
