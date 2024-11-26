@@ -13,18 +13,28 @@
 #include "game.h"
 
 
-int main() {
-    std::string command;
+int main(int argc, char* argv[]) {
+
     std::vector<Observer*> observers;
+
+    std::string abilities1 = "LFDSP";
+    std::string abilities2 = "LFDSP";
+    
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "-ability1" && i + 1 < argc) {
+            abilities1 = argv[++i];
+        } else if (arg == "-ability2" && i + 1 < argc) {
+            abilities2 = argv[++i];
+        }
+    }
+
+
     Game game;
-    Observer *observer1 = new TextObserver {&game, 0};
-    Observer *observer2 = new TextObserver {&game, 1};
-    observers.emplace_back(observer1);
-    observers.emplace_back(observer2);
     game.startGame();
     game.gameLoop();
     for (Observer* observer : observers) {
-    delete observer;
-  }
+        delete observer;
+    }
 
 }
