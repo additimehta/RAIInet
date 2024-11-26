@@ -28,5 +28,6 @@ class Game: public Subject {
         void switchTurn();
         void initializeBoard();
         void moveLinks(Link *link, char d);
+        void initalizeLinks(std::unique_ptr<Player>& player);
 };
 
