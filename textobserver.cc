@@ -61,7 +61,7 @@ void TextObserver::notify() override {
     const auto& oppLinks = opponent->getLinks();
     for(size_t i = 0; oppLinks.size(); ++i) {
 
-        if(links[i].isRevealed()) {
+        if(links[i].getisRevealed()) {
             cout << linkID << ": " << oppLinks[i]->getType() << oppLinks[i]->getStrenght();
         }else {
             cout << linkID << ": ?";
