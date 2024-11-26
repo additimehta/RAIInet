@@ -12,7 +12,7 @@ class Game: public Subject {
     std::vector<std::unique_ptr<Player>> players;
     int currentPlayerIndex;
     bool gameOver;
-    
+
     Link *charToLink(char linkChar);
 
     public:
@@ -32,7 +32,7 @@ class Game: public Subject {
         bool processCommand(std::string command);        // returns true if successful, otherwise false
         void switchTurn();
         void initializeBoard();
-        void moveLinks(Link *link, char d);
+        void moveLink(Link *link, char d);
         void initalizeLinks(std::unique_ptr<Player>& player);
 };
 
