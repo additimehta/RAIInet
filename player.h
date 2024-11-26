@@ -7,6 +7,7 @@
 #include "link.h"
 #include "cell.h"
 #include "ability.h"
+#include "polarize.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ class Player {
         
         void addLink(unique_ptr<Link> link);
         void addAbility(unique_ptr<Ability> ability);
-        void addAbilityString(const string &abilitiesstr);
+        void addAbility(const string &abilitiesstr); // takes the string from input
         void useAbility(int abilityID, Link &targetLink);
         void useAbility(int abilityID, Cell &targetCell);
 

@@ -14,7 +14,7 @@ void Player::addAbility(unique_ptr<Ability> ability) {             // take over 
 }
 
 
-void Player::addAbilityString(const string &a) {
+void Player::addAbility(const string &a) {
     for(size_t i = 0; i < a.size(); i++) {
         if(a[i] == 'P') {
             addAbility(std::make_unique<Polarize>(this));
