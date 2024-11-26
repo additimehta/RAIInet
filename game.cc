@@ -46,16 +46,16 @@ void Game::initializeBoard() {
 
     for(int i = 0; i < width; ++i) {
         if(i == 3 || i == 4) {
-            board->getCell(1, i)->placeLink(players[0]->getLinks()->at(i).get());
+            board->getCell(1, i)->placeLink(players[0]->getLink(i));
         } else {
-            board->getCell(0, i)->placeLink(players[0]->getLinks()->at(i).get());
+            board->getCell(0, i)->placeLink(players[0]->getLink(i));
         }
     }
     for(int i = 0; i < width; ++i) {
         if(i == 3 || i == 4) {
-            board->getCell(6, i)->placeLink(players[1]->getLinks()->at(i).get());
+            board->getCell(6, i)->placeLink(players[1]->getLink(i));
         } else {
-            board->getCell(7, i)->placeLink(players[1]->getLinks()->at(i).get());
+            board->getCell(7, i)->placeLink(players[1]->getLink(i));
         }
     }
 }
@@ -106,7 +106,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
 
 
     if (newRow < 0 || newRow > 7 || board->getCell(newRow, newCol)->getIsServerPort()) {
-        board->getCell(currentRow, currentCol)->removeLink();
+        //reveal link to other player here;
 
         if (this->currentPlayerIndex == 0) {       // player 1
             if(board->getCell(newRow, newCol)->getIsServerPort()) { // if it is a server port, download to enemy
@@ -137,7 +137,8 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
                 }
             }
         }
-        
+
+        board->getCell(currentRow, currentCol)->removeLink();
     }
 
     Link *newLink = board->getCell(newRow, newCol)->getLink();
@@ -155,6 +156,8 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         else {
             board->getCell(newRow, newCol)->placeLink(newLink);
         }
+
+         //reveal link to other player here;
 
         // Remove the link from the current position
         board->getCell(currentRow, currentCol)->removeLink();
