@@ -1,4 +1,4 @@
- #include "board.h"
+#include "board.h"
 
 using namespace std;
 
@@ -11,7 +11,7 @@ Board::Board(int height, int width) : height{height}, width{width} {
     }
 }
 
-Cell* Board::getCell(int row, int col) {
+Cell* Board::getCell(int row, int col) const {
     return grid[row][col].get();
 }
 int Board::getHeight() {

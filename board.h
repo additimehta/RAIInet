@@ -15,7 +15,7 @@ class Board {
     vector<vector<unique_ptr<Cell>>> grid;
 
     public:
-        Cell* getCell(int row, int col);
+        Cell* getCell(int row, int col) const;
 
         int getHeight();
         int getWidth();

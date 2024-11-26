@@ -24,7 +24,7 @@ void TextObserver::notify() {
     };
 
     for(size_t i = 0; i < links.size(); ++i) {
-        cout << linkID << ": " << links[i].getType() << links[i].getStrength();
+        cout << linkID << ": " << links[i]->getType() << links[i]->getStrength();
         if(i == 4) {
             cout << endl;
         }else {
@@ -36,11 +36,11 @@ void TextObserver::notify() {
     cout << endl;
     cout << "========" << endl;
     
-    const Board& board = game->getBoard();
+    const Board *board = game->getBoard();
 
     for(int row = 0; row < 8; row++) {
         for(int col = 0; col < 8; col++){
-            Cell *cell = board.getCell(row, col);
+            Cell *cell = board->getCell(row, col);
             if(cell->getIsServerPort()) {
                 cout << "SS";
             }else if(cell->getLink()) {

@@ -7,7 +7,7 @@
 
 class TextObserver : public Observer {
     Game* game;
-    std::vector<std::vector<char>> Board;
+    std::vector<std::vector<char>> gameBoard;
     int playerID;
 
 public:
