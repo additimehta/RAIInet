@@ -34,6 +34,12 @@ void Game::initalizeLinks(Player *player, vector<string> linksString) {
     }
 }
 
+void Game::initalizeAbilites(string a1, string a2) {
+    for(char ability : a1) {
+        players[0]->addAbility(a1, )
+    }
+}
+
 
 
 void Game::initializeBoard() {
