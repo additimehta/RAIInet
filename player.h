@@ -20,8 +20,8 @@ class Player {
         int getPlayerID() const;
         int getDownloadedData() const;
         int getDownloadedViruses() const;
-        Link &getLink(int LinkID) const;
-        Ability &getAbility(int AbilityID) const;
+        Link *getLink(int LinkID) const;
+        Ability *getAbility(int AbilityID) const;
         int getAbilitiesCount() const;
 
         Player(int playerID, int downloadedData, int downloadedViruses);

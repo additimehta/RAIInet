@@ -1,13 +1,17 @@
 #include "subject.h"
 #include "board.h"
+#include "player.h"
 #include <vector>
 #include <memory>
 #include <string>
+#include "link.h"
 
 class Game: public Subject {
     std::unique_ptr<Board> board;
     std::vector<std::unique_ptr<Player>> players;
     int currentPlayerIndex;
+    
+    Link *charToLink(char linkChar);
 
     public:
         //getters
@@ -22,6 +26,6 @@ class Game: public Subject {
         Game(); 
 
         void startGame();
-        void processCommand(std::string command);
+        bool processCommand(std::string command);        // returns true if successful, otherwise false
         void switchTurn();
 };
