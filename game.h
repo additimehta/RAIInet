@@ -1,3 +1,6 @@
+#ifndef _GAME_H_
+#define _GAME_H_
+
 #include "subject.h"
 #include "board.h"
 #include "player.h"
@@ -37,3 +40,4 @@ class Game: public Subject {
         int checkWin();                                 // 0 = no win, 1 = player one wins, 2 = player two wins
 };
 
+#endif
