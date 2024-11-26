@@ -34,9 +34,6 @@ void Game::initalizeLinks(Player *player, vector<string> linksString) {
     }
 }
 
-void G
-
-
 
 
 void Game::initializeBoard() {
