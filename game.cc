@@ -46,9 +46,9 @@ void Game::initializeBoard() {
 
     for(int i = 0; i < width; ++i) {
         if(i == 3 || i == 4) {
-            board->getCell(0, i)->placeLink(players[0]->getLinks()->at(i).get());
-        } else {
             board->getCell(1, i)->placeLink(players[0]->getLinks()->at(i).get());
+        } else {
+            board->getCell(0, i)->placeLink(players[0]->getLinks()->at(i).get());
         }
     }
     for(int i = 0; i < width; ++i) {
