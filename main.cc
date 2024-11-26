@@ -27,9 +27,9 @@ int main() {
             }
             Link *link = charToLink(linkChar);
             moveLink(link, direction);
-        }else if(action == "abilities") {
+        }else if(command == "abilities") {
             //display abiltiies
-        } else if (action == "ability") {
+        } else if (command == "ability") {
             int abilityID;
             std::cin >> abilityID;
 
@@ -44,14 +44,11 @@ int main() {
                 Link *link = charToLink(linkChar);
                 getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
             }
-        }else if (action == "board") {
+        }else if (command== "board") {
         // display board
         }else if (action == "sequence") {
         string file;
-        iss >> file;
-        if (iss.fail() || file.empty()) {
-            return false;
-        }
+        std::cin >> file;
         // execute sequence inside file
         }else if (action == "quit") {
             break;
