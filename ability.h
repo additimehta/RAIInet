@@ -8,9 +8,11 @@
 class Player;
 
 class Ability {
+    protected:
     Player *player;
     bool isUsed;
     public:
+        Ability(Player *player);
         virtual void use(Link &targetLink) {}
         virtual void use(Cell &targetCell) {}
         virtual ~Ability() = 0;
