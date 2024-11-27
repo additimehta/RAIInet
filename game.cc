@@ -124,15 +124,15 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         return false;
     }
 
-
-    if (board->getCell(newRow, newCol)->getIsServerPort()) {        // check if own player tries to move in own server port
-        if (this->currentPlayerIndex == 0 && newRow == 0) {
-            return false;
-        } else if (this->currentPlayerIndex == 1 && newRow == 7) {
-            return false;
+    if( newRow >= 0 || newRow <= 7) {
+        if (board->getCell(newRow, newCol)->getIsServerPort()) {        // check if own player tries to move in own server port
+            if (this->currentPlayerIndex == 0 && newRow == 0) {
+                return false;
+            } else if (this->currentPlayerIndex == 1 && newRow == 7) {
+                return false;
+            }
         }
     }
- 
 
     if (newRow < 0 || newRow > 7 || board->getCell(newRow, newCol)->getIsServerPort()) {
         //reveal link to other player here;
