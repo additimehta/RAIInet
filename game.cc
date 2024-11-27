@@ -80,6 +80,11 @@ void Game::initializeBoard() {
 }
 
 bool Game::moveLink(Link *link, char d) {                       // returns true if move was successful, false if not 
+    if(link->getOwner()->getPlayerID() != this->currentPlayerIndex) {
+        return false;
+    }
+
+
     bool found = false;
     int currentRow = -1, currentCol = -1;
 
