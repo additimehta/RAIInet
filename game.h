@@ -41,7 +41,7 @@ class Game: public Subject {
 
         //void startGame();
 
-        void processCommand(const string& cmd);
+        bool processCommand(const string& cmd);
         void gameLoop();       // returns true if successful, otherwise false
         void extractFile(const string& filename);
         void switchTurn();
