@@ -133,39 +133,36 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         }
     }
 
-    if (newRow < 0 || newRow > 7 || board->getCell(newRow, newCol)->getIsServerPort()) {
+    if (newRow < 0 || newRow > 7) {
         //reveal link to other player here;
-
         if (this->currentPlayerIndex == 0) {       // player 1
-            if(board->getCell(newRow, newCol)->getIsServerPort()) { // if it is a server port, download to enemy
-                if(link->getType() == "V") {
-                    this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
-                } else {
-                    this->players[1]->setDownloadedData(1  + this->players[1]->getDownloadedData());
-                }
+            if(link->getType() == "V") {                            // else download to self
+                this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
             } else {
-                if(link->getType() == "V") {                            // else download to self
-                    this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
-                } else {
-                    this->players[0]->setDownloadedData(1 + this->players[0]->getDownloadedData());
-                }
+                this->players[0]->setDownloadedData(1 + this->players[0]->getDownloadedData());
             }
         } else {
-            if(board->getCell(newRow, newCol)->getIsServerPort()) { // if it is a server port, download to enemy
-                if(link->getType() == "V") {
-                    this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
-                } else {
-                    this->players[0]->setDownloadedData(1 + this->players[0]->getDownloadedData());
-                }
+            if(link->getType() == "V") {                            // else download to self
+                this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
             } else {
-                if(link->getType() == "V") {                            // else download to self
-                    this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
-                } else {
-                    this->players[1]->setDownloadedData(1 + this->players[1]->getDownloadedData());
-                }
+                this->players[1]->setDownloadedData(1 + this->players[1]->getDownloadedData());
             }
         }
-
+        board->getCell(currentRow, currentCol)->removeLink();
+    } else if (board->getCell(newRow, newCol)->getIsServerPort()) {
+        if (this->currentPlayerIndex == 0) {
+            if(link->getType() == "V") {
+                this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
+            } else {
+                this->players[1]->setDownloadedData(1  + this->players[1]->getDownloadedData());
+            }
+        } else {
+            if(link->getType() == "V") {
+                this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
+            } else {
+                this->players[0]->setDownloadedData(1 + this->players[0]->getDownloadedData());
+            }
+        }
         board->getCell(currentRow, currentCol)->removeLink();
     }
 
