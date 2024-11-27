@@ -252,8 +252,14 @@ void Game::gameLoop() {
             char direction;
             std::cin >> linkChar >> direction;
             Link *link = charToLink(linkChar);
-            if (moveLink(link, direction)) notifyObservers();
-            else std::cout << "Move not valid";
+            if (moveLink(link, direction)) {
+                switchTurn();
+                notifyObservers();
+            }
+            else {
+                std::cout << "Move not valid";
+            }
+            
         }
         else if (command == "abilities") {
             // display abilities to display
