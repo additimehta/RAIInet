@@ -15,6 +15,8 @@ class Ability {
         Ability(Player *player);
         virtual void use(Link &targetLink) {}
         virtual void use(Cell &targetCell) {}
+        bool hasBeenUsed() const;
+        void markUsed();
         virtual ~Ability() = 0;
 };
 

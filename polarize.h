@@ -2,6 +2,7 @@
 #define _POLARIZE_H_
 
 #include "ability.h"
+#include <iostream>
 
 class Polarize: public Ability {
     public:

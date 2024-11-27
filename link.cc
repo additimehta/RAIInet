@@ -21,7 +21,7 @@ void Link::setStrength(int strength) {
 }
 
 void Link::setType(string type) {
-    if (type == "Virus" || type == "Data") {
+    if (type == "V" || type == "D") {
         this->type = type;
     }
 }
