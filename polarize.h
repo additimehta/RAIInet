@@ -5,6 +5,8 @@
 
 class Polarize: public Ability {
     void use(Link &targetLink) override;
+    public:
+    Polarize(Player* player);
 };
 
 #endif
