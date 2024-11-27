@@ -181,6 +181,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         // Remove the link from the current position
         board->getCell(currentRow, currentCol)->removeLink();
     }
+    return true;
 }
 
 int Game::checkWin() {
