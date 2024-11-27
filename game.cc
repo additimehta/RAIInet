@@ -34,7 +34,12 @@ void Game::initalizeLinks(Player *player, vector<string> linksString) {
         string link = linksString[i];
         string type(1, link[0]);
         int strength = link[1] - '0';
-        player->addLink(std::make_unique<Link>(type, strength, false, player));
+        if (player == getPlayer(0)) {
+            player->addLink(std::make_unique<Link>(type, strength, false, player, 'a' + i));
+        }
+        else {
+            player->addLink(std::make_unique<Link>(type, strength, false, player, 'A' + i));
+        }
     }
 }
 
