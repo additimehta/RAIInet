@@ -117,18 +117,22 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         return false;
     }
 
-    if (newRow < 0 || newRow > 7 || board->getCell(newRow, newCol)->getIsServerPort()) {       // If the move is invalid, return without moving the link
-        if (this->currentPlayerIndex == 0) {       // if it is player 1
-            if (newRow < 1) {                     // cannot move into own server ports  (Row 0) or out of map (Row -1)
-                return false;
-            }
-        } else {                                   // if it is player 2
-            if (newRow > 6) {                     // cannot move into own server ports (Row (7) or out of map (Row 8+)
-                return false;       
-            }
-        }
+    if (newRow < 0 && this->currentPlayerIndex == 0) {       // If the move is invalid, return without moving the link
+        return false;
+    }
+    if (newRow > 7 && this->currentPlayerIndex == 1) {       // If the move is invalid, return without moving the link
+        return false;
     }
 
+
+    if (board->getCell(newRow, newCol)->getIsServerPort()) {        // check if own player tries to move in own server port
+        if (this->currentPlayerIndex == 0 && newRow == 0) {
+            return false;
+        } else if (this->currentPlayerIndex == 1 && newRow == 7) {
+            return false;
+        }
+    }
+ 
 
     if (newRow < 0 || newRow > 7 || board->getCell(newRow, newCol)->getIsServerPort()) {
         //reveal link to other player here;
