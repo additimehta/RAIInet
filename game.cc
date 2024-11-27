@@ -253,9 +253,10 @@ void Game::switchTurn() {       // need to add funcitonality to only iterate ove
 
 
 
-void Game::processCommand(const string& cmd) {
-    istringstream stream(cmd);
-
+void Game::processCommand(const string& input) {
+    istringstream stream(input);
+    string cmd;
+    stream >> cmd;
      if (cmd == "move") {
         char linkChar;
         char direction;
@@ -298,9 +299,9 @@ void Game::processCommand(const string& cmd) {
         notifyObservers();
     }
     else if (cmd == "sequence") {
-        string file;
-        stream >> file;
-        // execute sequence inside file
+        string filename;
+        stream >> filename;
+        extractFile(filename);
     }
     else if (cmd == "quit") {
       //  break;
@@ -309,15 +310,9 @@ void Game::processCommand(const string& cmd) {
 }
 
 void Game::gameLoop() {
-    string cmd;
-    while(cin >> cmd) {
-        if(cmd == "sequence") {
-            string filename;
-            cin >> filename;
-            extractFile(filename);
-        } else {
-            processCommand(cmd);
-        }
+    string input;
+    while(getline(cin, input)) {
+        processCommand(input);
     }
 }
 
