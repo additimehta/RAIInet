@@ -112,6 +112,13 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         case 'r': newCol++; break;
     }
 
+    /*
+    HERE IS WHERE YOU ADD ABILTIES
+    E.G if you are implementing zig zag
+    change
+    newCol & newRow to be diagonal, or you can add another case to switch above this,
+    */
+
     if (newCol < 0 || newCol > 7) {         // cannot ever move out of columns
         return false;
     }
