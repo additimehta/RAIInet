@@ -174,8 +174,15 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         board->getCell(currentRow, currentCol)->removeLink();
     }
     else {
+        link->setIsRevealed(true);
+        newLink->setIsRevealed(true);
+
         // Compare strengths and place the stronger link
-        if (link->getStrength() > newLink->getStrength()) {
+        if(link->getOwner()->getPlayerID() == newLink->getOwner()->getPlayerID()) {
+            return false;
+        }
+
+        if (link->getStrength() >= newLink->getStrength()) {
             board->getCell(newRow, newCol)->placeLink(link);
         }
         else {
