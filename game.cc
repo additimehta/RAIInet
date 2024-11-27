@@ -260,7 +260,7 @@ void Game::switchTurn() {       // need to add funcitonality to only iterate ove
 
 
 
-void Game::processCommand(const string& input) {
+bool Game::processCommand(const string& input) {
     istringstream stream(input);
     string cmd;
     stream >> cmd;
@@ -311,15 +311,17 @@ void Game::processCommand(const string& input) {
         extractFile(filename);
     }
     else if (cmd == "quit") {
-      //  break;
+        return false;
     }// add checwin 
-
+    return true;
 }
 
 void Game::gameLoop() {
     string input;
     while(getline(cin, input)) {
-        processCommand(input);
+        if (!processCommand(input)) {
+            break;
+        }
     }
 }
 
