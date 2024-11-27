@@ -4,8 +4,8 @@
 #include "ability.h"
 
 class Polarize: public Ability {
-    void use(Link &targetLink) override;
     public:
+    void use(Link &targetLink) override;
     Polarize(Player* player);
 };
 
