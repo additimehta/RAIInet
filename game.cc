@@ -91,7 +91,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         if (found) break;
     }
 
-    if (!found) return;
+    if (!found) return false;
 
     int newRow = currentRow;
     int newCol = currentCol;
