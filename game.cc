@@ -206,9 +206,9 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
 }
 
 int Game::checkWin() {
-    if(this->players[1]->getDownloadedData() >= 4 || this->players[1]->getDownloadedViruses() >= 4) {           // 2 = player 2 wins
+    if(this->players[1]->getDownloadedData() >= 4 || this->players[0]->getDownloadedViruses() >= 4 ) {           // 2 = player 2 wins
         return 2;
-    } else if (this->players[0]->getDownloadedData() >= 4 || this->players[0]->getDownloadedViruses() >= 4) {    // 1 = player 1 wins
+    } else if (this->players[0]->getDownloadedData() >= 4 || this->players[1]->getDownloadedViruses() >= 4 ) {    // 1 = player 1 wins
         return 1;  
     } else {
         return 0;           // 0 = no one has won
