@@ -133,7 +133,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         }
     }
 
-    if (newRow < 0 || newRow > 7) {
+    if (newRow < 0 || newRow > 7) {                                                                         // made it opponents end of board
         //reveal link to other player here;
         if (this->currentPlayerIndex == 0) {       // player 1
             if(link->getType() == "V") {                            // else download to self
@@ -149,7 +149,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
             }
         }
         board->getCell(currentRow, currentCol)->removeLink();
-    } else if (board->getCell(newRow, newCol)->getIsServerPort()) {
+    } else if (board->getCell(newRow, newCol)->getIsServerPort()) {                                             // made it opponents server port
         if (this->currentPlayerIndex == 0) {
             if(link->getType() == "V") {
                 this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
@@ -164,18 +164,17 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
             }
         }
         board->getCell(currentRow, currentCol)->removeLink();
-    }
+    } else {                                                                                                // regular move
+        Link *newLink = board->getCell(newRow, newCol)->getLink();
 
-    Link *newLink = board->getCell(newRow, newCol)->getLink();
-
-    // If the new cell is empty, place the moving link there
-    if (newLink == nullptr) {
-        board->getCell(newRow, newCol)->placeLink(link);
-        board->getCell(currentRow, currentCol)->removeLink();
-    }
-    else {
-        link->setIsRevealed(true);
-        newLink->setIsRevealed(true);
+        // If the new cell is empty, place the moving link there
+        if (newLink == nullptr) {
+            board->getCell(newRow, newCol)->placeLink(link);
+            board->getCell(currentRow, currentCol)->removeLink();
+        }
+        else {
+            link->setIsRevealed(true);
+            newLink->setIsRevealed(true);
 
         // Compare strengths and place the stronger link
         if(link->getOwner()->getPlayerID() == newLink->getOwner()->getPlayerID()) {
@@ -194,6 +193,8 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         // Remove the link from the current position
         board->getCell(currentRow, currentCol)->removeLink();
     }
+    }
+
     return true;
 }
 
