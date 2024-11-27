@@ -218,7 +218,7 @@ Link *Game::charToLink(char linkChar) {
     }
     else if ('A' <= linkChar && linkChar <= 'G') {
         // player 2
-        int linkIndex = linkChar - 'a';
+        int linkIndex = linkChar - 'A';
         return getPlayer(1)->getLink(linkIndex);
     }
     else {
