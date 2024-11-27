@@ -217,12 +217,12 @@ int Game::getCurrentPlayerIndex() const {
 }
 
 Link *Game::charToLink(char linkChar) {
-    if ('a' <= linkChar && linkChar <= 'g') {
+    if ('a' <= linkChar && linkChar <= 'h') {
         // player 1
         int linkIndex = linkChar - 'a';
         return getPlayer(0)->getLink(linkIndex);
     }
-    else if ('A' <= linkChar && linkChar <= 'G') {
+    else if ('A' <= linkChar && linkChar <= 'H') {
         // player 2
         int linkIndex = linkChar - 'A';
         return getPlayer(1)->getLink(linkIndex);
