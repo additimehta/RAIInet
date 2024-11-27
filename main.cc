@@ -28,7 +28,7 @@ vector<string> parseLinks(const string &filename) {
 
 int main(int argc, char* argv[]) {
 
-    vector<Observer*> observers;
+    vector<unique_ptr<Observer>> observers;
 
     string abilities1 = "LFDSP";
     string abilities2 = "LFDSP";
@@ -59,19 +59,13 @@ int main(int argc, char* argv[]) {
         }
     }
 
-
-
-
-
     Game game(abilities1, abilities2, links1, links2);
-    game.startGame();
+    observers.emplace_back(make_unique<TextObserver>(&game, 0));
+    observers.emplace_back(make_unique<TextObserver>(&game, 1));
+   // game.startGame();
    // game.initalizeLinks(game.getPlayer(0), links1);
    // game.initalizeLinks(game.getPlayer(1), links2);
    // game.initializeBoard();
     game.notifyObservers();
     game.gameLoop();
-    for (Observer* observer : observers) {
-        delete observer;
-    }
-
 }
