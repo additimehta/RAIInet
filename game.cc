@@ -322,6 +322,10 @@ void Game::gameLoop() {
         if (!processCommand(input)) {
             break;
         }
+        int winStatus = checkWin();
+        if (winStatus != 0) {
+            cout << "Player " << winStatus << "wins !" << endl; 
+        }
     }
 }
 
