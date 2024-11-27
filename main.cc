@@ -62,9 +62,8 @@ int main(int argc, char* argv[]) {
 
     Game game(abilities1, abilities2, links1, links2);
     observers.emplace_back(make_unique<TextObserver>(&game, 0));
-    observers.emplace_back(make_unique<TextObserver>(&game, 1));
    // game.startGame();
-   //game.startGame();
+   // game.startGame();
    // game.initalizeLinks(game.getPlayer(0), links1);
    // game.initalizeLinks(game.getPlayer(1), links2);
    // game.initializeBoard();
