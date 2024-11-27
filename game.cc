@@ -2,7 +2,6 @@
 #include "textobserver.h"
 #include <sstream>
 
-
 using namespace std;
 
 Game::Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false) {
@@ -251,63 +250,80 @@ void Game::switchTurn() {       // need to add funcitonality to only iterate ove
     }
 }
 
-void Game::gameLoop() {
-    std::string command;
 
-    while(std::cin >> command) {
 
-        if (command == "move") {
-            char linkChar;
-            char direction;
-            std::cin >> linkChar >> direction;
-            Link *link = charToLink(linkChar);
-            if (moveLink(link, direction)) {
-                switchTurn();
-                notifyObservers();
-            }
-            else {
-                std::cout << "Move not valid";
-            }
-            
-        }
-        else if (command == "abilities") {
-            // display abilities to display
-        }
-        else if (command == "ability") {
-            int abilityID;
-            std::cin >> abilityID;
-        
-            int row;
-            int col;
-            char linkChar;
-            char nextChar;
-            std::cin >> nextChar;
-            if (nextChar <= '9' && nextChar >= '0') { // inputted a target cell
-                row = nextChar - '0';
-                std::cin >> col;
-                Cell *cell = getBoard()->getCell(row, col);
-                getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
-            }
-            else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
-                linkChar = nextChar;
-                Link *link = charToLink(linkChar); 
-                getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
-            }
-            else {
-                std::cout << "Ability command not correct";
-            }
-        }
-        else if (command == "board") {
+void Game::processCommand(const string& cmd) {
+    istringstream stream(cmd);
+
+     if (cmd == "move") {
+        char linkChar;
+        char direction;
+        stream >> linkChar >> direction;
+        Link *link = charToLink(linkChar);
+        if (moveLink(link, direction)) {
+            switchTurn();
             notifyObservers();
         }
-        else if (command == "sequence") {
-            string file;
-            std::cin >> file;
-            // execute sequence inside file
+        else {
+            std::cout << "Move not valid";
         }
-        else if (command == "quit") {
-            break;
+            
+    }else if (cmd == "abilities") {
+        // display abilities to display
+    }else if (cmd == "ability") {
+        int abilityID;
+        stream >> abilityID;
+        int row;
+        int col;
+        char linkChar;
+        char nextChar;
+        stream >> nextChar;
+        if (nextChar <= '9' && nextChar >= '0') { // inputted a target cell
+            row = nextChar - '0';
+            stream >> col;
+            Cell *cell = getBoard()->getCell(row, col);
+            getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
         }
-        // add checkWin() here
+        else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
+            linkChar = nextChar;
+            Link *link = charToLink(linkChar); 
+            getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
+        }
+        else {
+            std::cout << "Ability cmd not correct";
+        }
+    }
+    else if (cmd == "board") {
+        notifyObservers();
+    }
+    else if (cmd == "sequence") {
+        string file;
+        stream >> file;
+        // execute sequence inside file
+    }
+    else if (cmd == "quit") {
+      //  break;
+    }// add checwin 
+
+}
+
+void Game::gameLoop() {
+    string cmd;
+    while(cin >> cmd) {
+        if(cmd == "sequence") {
+            string filename;
+            cin >> filename;
+            extractFile(filename);
+        } else {
+            processCommand(cmd);
+        }
+    }
+}
+
+void Game::extractFile(const string& filename) {
+    ifstream file(filename);
+    string cmd;
+    while(getline(file, cmd)) {
+        processCommand(cmd);
     }
 }
