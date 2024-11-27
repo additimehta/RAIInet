@@ -279,12 +279,17 @@ void Game::gameLoop() {
             int row;
             int col;
             char linkChar;
-            if (std::cin >> row >> col) {  // inputted a target cell
+            char nextChar;
+            std::cin >> nextChar;
+            if (nextChar <= '9' && nextChar >= '0') { // inputted a target cell
+                row = nextChar - '0';
+                std::cin >> col;
                 Cell *cell = getBoard()->getCell(row, col);
                 getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
             }
-            else if (std::cin >> linkChar) { // inputted a target link
-                Link *link = charToLink(linkChar);
+            else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
+                linkChar = nextChar;
+                Link *link = charToLink(linkChar); 
                 getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
             }
             else {
