@@ -7,6 +7,8 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <fstream> 
+#include <sstream>
 #include "subject.h"
 #include "board.h"
 #include "player.h"
@@ -38,7 +40,10 @@ class Game: public Subject {
         ~Game();
 
         //void startGame();
+
+        void processCommand(const string& cmd);
         void gameLoop();       // returns true if successful, otherwise false
+        void extractFile(const string& filename);
         void switchTurn();
         void initializeBoard();
         bool moveLink(Link *link, char d);              // returns true if move was successful, false if not
