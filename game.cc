@@ -188,12 +188,34 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
             return false;
         }
 
+
         if (link->getStrength() >= newLink->getStrength()) {
             board->getCell(newRow, newCol)->placeLink(link);
-        }
-        else {
+            if(link->getType() == "V") {                            // else download to self
+                this->players[this->currentPlayerIndex]->setDownloadedViruses(1 + this->players[this->currentPlayerIndex]->getDownloadedViruses());
+            } else {
+                this->players[this->currentPlayerIndex]->setDownloadedData(1 + this->players[this->currentPlayerIndex]->getDownloadedData());
+            }
+        } else {
             board->getCell(newRow, newCol)->placeLink(newLink);
+
+            int opp;
+
+            if(this->currentPlayerIndex == 0) {
+                opp = 1;
+            } else {
+                opp = 0;
+            }
+
+            if(link->getType() == "V") {                            // else download to opponent
+                this->players[opp]->setDownloadedViruses(1 + this->players[opp]->getDownloadedViruses());
+            } else {
+                this->players[opp]->setDownloadedData(1 + this->players[opp]->getDownloadedData());
+            }
+
+
         }
+
 
          //reveal link to other player here;
 
@@ -324,7 +346,7 @@ void Game::gameLoop() {
         }
         int winStatus = checkWin();
         if (winStatus != 0) {
-            cout << "Player " << winStatus << "wins !" << endl; 
+            cout << "Player " << winStatus << " wins !" << endl; 
         }
     }
 }
