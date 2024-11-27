@@ -12,7 +12,7 @@ Game::Game(const string a1, const string a2, const vector<string>& links1, const
     initalizeAbilites(a1, a2);
     initalizeLinks(players[0].get(), links1);
     initalizeLinks(players[1].get(), links2);
-    initializeBoard()
+    initializeBoard();
 }//work on the game ctor 
 
 
