@@ -2,9 +2,7 @@
 
 
 
-Polarize::Polarize(Player* player) {
-    this->player = player;
-}
+Polarize::Polarize(Player* player): Ability {player} {}
 
 
 void Polarize::use(Link &targetLink) {
@@ -14,4 +12,5 @@ void Polarize::use(Link &targetLink) {
     else {
         targetLink.setType("D");
     }
+    this->isUsed = true;
 }
