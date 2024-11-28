@@ -9,9 +9,6 @@
 #include <string>
 #include <fstream> 
 #include <sstream>
-#include "subject.h"
-#include "board.h"
-#include "player.h"
 #include "link.h"
 
 using namespace std;
@@ -23,7 +20,6 @@ class Game: public Subject {
     std::vector<std::unique_ptr<Player>> players;
     int currentPlayerIndex;
     bool gameOver;
-
     Link *charToLink(char linkChar);
 
     public:
