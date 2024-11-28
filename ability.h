@@ -19,10 +19,6 @@ class Ability {
         void markUsed();
         virtual ~Ability() = 0;
         virtual string getName() const = 0;
-    friend std::ostream& operator<<(std::ostream& os, const Ability& ability) {
-        os << ability.getName();
-        return os;
-    }
 };
 
 #endif

@@ -91,13 +91,14 @@ void Player::setDownloadedViruses(int i) {
 
 
 void Player::displayAbilities() const {
-    cout << "Player " << playerID + 1 << " Abilities: ";
+    cout << "Player " << playerID + 1 << " Abilities: " << endl;
     if (abilities.empty()) {
         cout << "No abilities assigned." << endl;
     } else {
-        for (const auto& abilityPtr : abilities) {
-            cout << *abilityPtr << " ";
+        for (int i = 0; i < 5; ++i) {
+            cout << i << ". " << abilities[i]->getName()
+                << " " << (abilities[i]->hasBeenUsed() ? "Used" : "Unused") 
+                << endl;
         }
-        cout << endl;
     }
 }

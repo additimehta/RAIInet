@@ -353,7 +353,7 @@ bool Game::processCommand(const string& input) {
     istringstream stream(input);
     string cmd;
     stream >> cmd;
-     if (cmd == "move") {
+    if (cmd == "move") {
         char linkChar;
         char direction;
         stream >> linkChar >> direction;
@@ -367,9 +367,7 @@ bool Game::processCommand(const string& input) {
         }
             
     }else if (cmd == "abilities") {
-        for(const auto& player : players) {
-            player->displayAbilities();
-        }
+        players[currentPlayerIndex]->displayAbilities();
 
     }else if (cmd == "ability") {
         int abilityID;
