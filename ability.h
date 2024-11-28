@@ -13,8 +13,8 @@ class Ability {
     bool isUsed;
     public:
         Ability(Player *player);
-        virtual void use(Link &targetLink) {}
-        virtual void use(Cell &targetCell) {}
+        virtual bool use(Link &targetLink) {} // return true if successful and false otherwise
+        virtual bool use(Cell &targetCell) {} // return true if successful and false otherwise
         bool hasBeenUsed() const;
         void markUsed();
         virtual ~Ability() = 0;

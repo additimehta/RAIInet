@@ -5,7 +5,7 @@
 Polarize::Polarize(Player* player): Ability {player} {}
 
 
-void Polarize::use(Link &targetLink) {
+bool Polarize::use(Link &targetLink) {
     if (targetLink.getType() == "D") {
         targetLink.setType("V");
     }
@@ -13,4 +13,5 @@ void Polarize::use(Link &targetLink) {
         targetLink.setType("D");
     }
     this->isUsed = true;
+    return true;
 }
