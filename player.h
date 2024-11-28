@@ -8,6 +8,7 @@
 #include "cell.h"
 #include "ability.h"
 #include "polarize.h"
+#include "board.h"
 
 using namespace std;
 
@@ -18,6 +19,8 @@ class Player {
     int downloadedViruses;
     vector<unique_ptr<Link>> links;
     vector<unique_ptr<Ability>> abilities;
+    Board *board;
+
     public:
         // getters
         int getPlayerID() const;
@@ -26,8 +29,10 @@ class Player {
         Link *getLink(int LinkID) const;
         Ability *getAbility(int AbilityID) const;
         int getAbilitiesCount() const;
+        Board *getBoard() const;
+        vector<Link*> getAllLinks() const;
 
-        Player(int playerID, int downloadedData, int downloadedViruses);
+        Player(int playerID, int downloadedData, int downloadedViruses, Board *board);
         
         void addLink(unique_ptr<Link> link);
         void addAbility(unique_ptr<Ability> ability);
@@ -37,6 +42,7 @@ class Player {
 
         void setDownloadedData(int i);
         void setDownloadedViruses(int i);
+
 
 
         

@@ -19,7 +19,7 @@ class Board {
 
         int getHeight();
         int getWidth();
-
+        vector<Cell*> getEmptyCells() const;
         Board(int height, int width);
 
 };

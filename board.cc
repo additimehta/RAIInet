@@ -23,6 +23,23 @@ int Board::getWidth() {
     return width;
 } 
 
+
+vector<Cell*> Board::getEmptyCells() const {
+    vector<Cell*> emptyCells;
+
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            Cell* cell = grid[i][j].get();
+            if (cell->getLink() == nullptr && !cell->getIsServerPort()) {
+                emptyCells.push_back(cell);
+            }
+        }
+    }
+
+    return emptyCells;
+}
+
+
 /*
 void Board::initializeBoard() {
     for (int i = 0; i < height; ++i) {
