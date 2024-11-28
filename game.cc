@@ -119,9 +119,10 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
     newCol & newRow to be diagonal, or you can add another case to switch above this,
     */
 
-    // functionality for firewall
+    // functionality for firewall and amplifier
     if (newCol >= 0 && newCol <= 7 && newRow >= 0 && newRow <= 7) {
         Cell *cell = board->getCell(newRow, newCol);
+        // firewall
         if (cell->isFirewall) {
             if (link->getOwner()->getPlayerID() == 0 && cell->underneathLetter == 'w') { // opponents firewall
                 link->setIsRevealed(true);
@@ -139,6 +140,10 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
                     return true;
                 }
             }
+        }
+        // amplifier
+        else if (cell->isAmplifier) {
+            link->setStrength(link->getStrength() + 2);
         }
     }
 
