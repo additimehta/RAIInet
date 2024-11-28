@@ -345,7 +345,7 @@ bool Game::processCommand(const string& input) {
 
     }else if (cmd == "ability") {
         int abilityID;
-        stream >> abilityID;
+        stream >> abilityID; // 1-indexed
         char nextChar;
         stream >> nextChar;
         if (nextChar <= '9' && nextChar >= '0') { // inputted a target cell
@@ -353,12 +353,16 @@ bool Game::processCommand(const string& input) {
             int col;
             stream >> col;
             Cell *cell = getBoard()->getCell(row, col);
-            getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
+            if (!getPlayer(currentPlayerIndex)->useAbility(abilityID - 1, *cell)) {
+                cout << "Ability not used correctly or is already used" << endl;
+            }
         }
         else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
             char linkChar = nextChar;
             Link *link = charToLink(linkChar); 
-            getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
+            if (getPlayer(currentPlayerIndex)->useAbility(abilityID - 1, *link)) {
+                cout << "Ability not used correctly or is already used" << endl;
+            }
         }
         else {
             std::cout << "Ability cmd not correct";

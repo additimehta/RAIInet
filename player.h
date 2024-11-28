@@ -45,8 +45,8 @@ class Player {
         void addLink(unique_ptr<Link> link);
         void addAbility(unique_ptr<Ability> ability);
         void addAbilities(const string &abilitiesstr); // takes the string from input
-        void useAbility(int abilityID, Link &targetLink);
-        void useAbility(int abilityID, Cell &targetCell);
+        bool useAbility(int abilityID, Link &targetLink);  // abilityID should be 0-indexed
+        bool useAbility(int abilityID, Cell &targetCell);  // abilityID should be 0-indexed
 
         void setDownloadedData(int i);
         void setDownloadedViruses(int i);
