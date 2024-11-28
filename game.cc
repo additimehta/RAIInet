@@ -119,6 +119,29 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
     newCol & newRow to be diagonal, or you can add another case to switch above this,
     */
 
+    // functionality for firewall
+    if (newCol >= 0 && newCol <= 7 && newRow >= 0 && newRow <= 7) {
+        Cell *cell = board->getCell(newRow, newCol);
+        if (cell->isFirewall) {
+            if (link->getOwner()->getPlayerID() == 0 && cell->underneathLetter == 'w') { // opponents firewall
+                link->setIsRevealed(true);
+                if (link->getType() == "V") {     // owner downloads virus and turn is over
+                    this->players[0]->setDownloadedViruses(1 + this->players[0]->getDownloadedViruses());
+                    board->getCell(currentRow, currentCol)->removeLink();
+                    return true;
+                }
+            }
+            else if (link->getOwner()->getPlayerID() == 1 && cell->underneathLetter == 'm') { // opponents firewall
+                link->setIsRevealed(true);
+                if (link->getType() == "V") {     // owner downloads virus and turn is over
+                    this->players[1]->setDownloadedViruses(1 + this->players[1]->getDownloadedViruses());
+                    board->getCell(currentRow, currentCol)->removeLink();
+                    return true;
+                }
+            }
+        }
+    }
+
     if (newCol < 0 || newCol > 7) {         // cannot ever move out of columns
         return false;
     }
