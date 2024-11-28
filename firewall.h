@@ -5,7 +5,6 @@
 #include <iostream>
 
 class Firewall: public Ability {
-    char letter;
     public:
         Firewall(Player* player);
         bool use(Cell &targetCell) override;
