@@ -46,7 +46,7 @@ void TextObserver::notify() {
             }else if(cell->getLink()) {
                 cout << cell->getOwner();
             }else {
-                cout << ".";
+                cout << cell->underneathLetter;
             }
         }
         cout << endl;
