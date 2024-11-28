@@ -8,7 +8,7 @@ class Polarize: public Ability {
     public:
     bool use(Link &targetLink) override;
     Polarize(Player* player);
-    string getName() const;
+    string getName() const override;
 };
 
 #endif

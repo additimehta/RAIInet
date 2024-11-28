@@ -36,7 +36,7 @@ class Game: public Subject {
         ~Game();
 
         //void startGame();
-
+        
         bool processCommand(const string& cmd);
         void gameLoop();       // returns true if successful, otherwise false
         void extractFile(const string& filename);

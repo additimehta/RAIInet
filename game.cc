@@ -5,8 +5,8 @@
 using namespace std;
 
 Game::Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false) {
-    players.push_back(std::make_unique<Player>(0, 0, 0));
-    players.push_back(std::make_unique<Player>(1, 0, 0));
+    players.push_back(std::make_unique<Player>(0, 0, 0, board.get()));
+    players.push_back(std::make_unique<Player>(1, 0, 0, board.get()));
     initalizeAbilites(a1, a2);
     initalizeLinks(players[0].get(), links1);
     initalizeLinks(players[1].get(), links2);

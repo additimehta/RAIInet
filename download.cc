@@ -15,3 +15,7 @@ bool Download::use(Link &targetLink) {
     player->setDownloadedData(player->getDownloadedData() + 1);
     return true;
 }
+
+string Download::getName() const {
+    return "Download";
+}

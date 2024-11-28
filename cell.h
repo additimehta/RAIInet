@@ -22,7 +22,6 @@ class Cell {
 
         void placeLink(Link *link);
         void removeLink();
-
         void setIsServerPort(bool c);
 
        // Cell(Link *link, bool isServerPort, char owner);

@@ -3,7 +3,7 @@
 using namespace std;
 
 Player::Player(int playerID, int downloadedData, int downloadedViruses, Board *board):
-    playerID {playerID}, downloadedData {downloadedData}, downloadedViruses {downloadedViruses}, board{board}, links {}, abilities {} {}
+    playerID {playerID}, downloadedData {downloadedData}, downloadedViruses {downloadedViruses}, links {}, abilities {}, board{board} {}
 
 void Player::addLink(unique_ptr<Link> link) {                      // take over ownership of link
     links.emplace_back(std::move(link));
