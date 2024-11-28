@@ -10,9 +10,9 @@ class Cell {
     Link *link;
     bool isServerPort;
     char owner;
-    char underneathLetter;
 
     public:
+        char underneathLetter;
         bool isFirewall;
         bool isAmplifier;
         //getters
