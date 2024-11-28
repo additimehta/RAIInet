@@ -3,7 +3,7 @@
 using namespace std;
 
 //Cell::Cell(Link *link, bool isServerPort): link{link}, isServerPort{isServerPort} {}
-Cell::Cell(): link{nullptr}, isServerPort{false}, owner{'.'} {}
+Cell::Cell(): link{nullptr}, isServerPort{false}, owner{' '}, underneathLetter{'.'}, isFirewall{false}, isAmplifier{false} {}
 
 void Cell::placeLink(Link *link) {
     this->link = link;
@@ -11,7 +11,7 @@ void Cell::placeLink(Link *link) {
 }
 void Cell::removeLink() {
     this->link = nullptr;
-    this->owner = '.';
+    this->owner = ' ';
 }
 
 void Cell::setIsServerPort(bool c) {

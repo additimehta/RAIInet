@@ -10,8 +10,11 @@ class Cell {
     Link *link;
     bool isServerPort;
     char owner;
+    char underneathLetter;
 
     public:
+        bool isFirewall;
+        bool isAmplifier;
         //getters
         Link *getLink() const;
         bool getIsServerPort() const;
