@@ -8,6 +8,14 @@
 #include "cell.h"
 #include "ability.h"
 #include "polarize.h"
+#include "linkboost.cc"
+#include "firewall.h"
+#include "download.h"
+#include "zigzag.h"
+#include "scan.h"
+#include "amplifier.h"
+#include "warpshift.h"
+
 #include "board.h"
 
 using namespace std;
@@ -42,6 +50,8 @@ class Player {
 
         void setDownloadedData(int i);
         void setDownloadedViruses(int i);
+
+        void displayAbilities() const;
 
 
 

@@ -18,3 +18,7 @@ bool Firewall::use(Cell &targetCell) {
     isUsed = true;
     return true;
 }
+
+string Firewall::getName() const {
+    return "Firewall";
+}

@@ -367,7 +367,10 @@ bool Game::processCommand(const string& input) {
         }
             
     }else if (cmd == "abilities") {
-        // display abilities to display
+        for(const auto& player : players) {
+            player->displayAbilities();
+        }
+
     }else if (cmd == "ability") {
         int abilityID;
         stream >> abilityID;

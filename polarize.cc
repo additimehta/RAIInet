@@ -15,3 +15,7 @@ bool Polarize::use(Link &targetLink) {
     this->isUsed = true;
     return true;
 }
+
+string Polarize::getName() const {
+    return "Polarize";
+}

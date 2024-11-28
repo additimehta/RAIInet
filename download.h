@@ -8,6 +8,8 @@ class Download: public Ability {
     public:
         Download(Player* player);
         bool use(Link &targetLink) override;
+        string getName() const;
+        
 };
 
 #endif

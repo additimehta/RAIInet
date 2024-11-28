@@ -8,6 +8,7 @@ class Scan: public Ability {
     public:
     bool use(Link &targetLink) override;
     Scan(Player* player);
+    string getName() const;
 };
 
 #endif

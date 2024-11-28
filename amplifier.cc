@@ -12,3 +12,7 @@ bool Amplifier::use(Cell &targetCell) {
     isUsed = true;
     return true;
 }
+
+string Amplifier::getName() const {
+    return "Amplifier";
+}

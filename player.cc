@@ -18,6 +18,20 @@ void Player::addAbility(const string &a) {
     for(size_t i = 0; i < 5; i++) {
         if(a[i] == 'P') {
             addAbility(std::make_unique<Polarize>(this));
+        }else if(a[i] == 'L') {
+            addAbility(std::make_unique<Linkboost>(this));
+        }else if(a[i] == 'F') {
+            addAbility(std::make_unique<Firewall>(this));
+        }else if(a[i] == 'D') {
+            addAbility(std::make_unique<Download>(this));
+        }else if(a[i] == 'Z') {
+            addAbility(std::make_unique<Zigzag>(this));
+        }else if(a[i] == 'S') {
+            addAbility(std::make_unique<Scan>(this));
+        }else if(a[i] == 'A') {
+            addAbility(std::make_unique<Amplifier>(this));
+        }else if(a[i] == 'W') {
+            addAbility(std::make_unique<WarpShift>(this));
         }
     }
 }
@@ -75,3 +89,15 @@ void Player::setDownloadedViruses(int i) {
     downloadedViruses = i;
 }
 
+
+void Player::displayAbilities() const {
+    cout << "Player " << playerID + 1 << " Abilities: ";
+    if (abilities.empty()) {
+        cout << "No abilities assigned." << endl;
+    } else {
+        for (const auto& abilityPtr : abilities) {
+            cout << *abilityPtr << " ";
+        }
+        cout << endl;
+    }
+}

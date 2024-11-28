@@ -12,3 +12,7 @@ bool Scan::use(Link &targetLink) {
     this->isUsed = true;
     return true;
 }
+
+string Scan::getName() const {
+    return "Scan";
+}
