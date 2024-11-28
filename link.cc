@@ -4,7 +4,7 @@ using namespace std;
 
 
 Link::Link(string type, int strength, bool isRevealed, Player *owner, char letter):
-    type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner}, letter{letter} {}
+    type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner}, letter{letter}, abilityStatus{0} {}
 
 bool Link::operator==(const Link& other) const {
     return this->type == other.type &&
@@ -26,6 +26,10 @@ void Link::setType(string type) {
     }
 }
 
+void Link::setAbilityStatus(int status) {
+    this->abilityStatus = status;
+}
+
 int Link::getStrength() const {
     return strength;
 }
@@ -44,4 +48,8 @@ string Link::getType() const {
 
 char Link::getLetter() const {
     return letter;
+}
+
+int Link::getAbilityStatus() const {
+    return abilityStatus;
 }

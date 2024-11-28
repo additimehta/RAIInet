@@ -105,11 +105,48 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
     int newRow = currentRow;
     int newCol = currentCol;
 
-    switch (d) {
-        case 'u': newRow--; break;
-        case 'd': newRow++; break;
-        case 'l': newCol--; break;
-        case 'r': newCol++; break;
+
+    if(link->getAbilityStatus() == 2) {     //zigzag
+
+    /*
+    1   2
+      L         inputs for zig zag and what it moves it , 1 is top left etc.
+    3   4
+    
+    */
+        switch (d) {
+            case 'u': newRow--; break;
+            case 'd': newRow++; break;
+            case 'l': newCol--; break;
+            case 'r': newCol++; break;
+            case '1': newRow--; newCol--; break;
+            case '2': newRow--; newCol++; break;
+            case '3': newRow++; newCol--; break;
+            case '4': newRow++; newCol++; break;
+            default:
+                return false;
+        }
+    } else {                                //default
+        switch (d) {
+            case 'u': newRow--; break;
+            case 'd': newRow++; break;
+            case 'l': newCol--; break;
+            case 'r': newCol++; break;
+            default:
+                return false;
+        }
+    }
+
+
+    if(link->getAbilityStatus() == 1) { // link boost
+        switch (d) {
+            case 'u': newRow--; break;
+            case 'd': newRow++; break;
+            case 'l': newCol--; break;
+            case 'r': newCol++; break;
+            default:
+                return false;
+        }
     }
 
     /*
@@ -118,6 +155,8 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
     change
     newCol & newRow to be diagonal, or you can add another case to switch above this,
     */
+
+
 
     // functionality for firewall and amplifier
     if (newCol >= 0 && newCol <= 7 && newRow >= 0 && newRow <= 7) {

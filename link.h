@@ -16,6 +16,8 @@ class Link {
     Player *owner;
     char letter;
 
+    int abilityStatus; // one is default, two is linkboost, three is zigzag
+
     public:
         //getters
         int getStrength() const;
@@ -23,6 +25,7 @@ class Link {
         Player *getOwner() const;
         string getType() const;
         char getLetter() const;
+        int getAbilityStatus() const;
 
         Link(string type, int strength, bool isRevealed, Player *owner, char letter);
         bool operator==(const Link& other) const;
@@ -30,6 +33,7 @@ class Link {
         void setIsRevealed(bool isRevealed);
         void setStrength(int strength);
         void setType(string type);
+        void setAbilityStatus(int status);
 
 };
 
