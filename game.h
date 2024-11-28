@@ -29,13 +29,10 @@ class Game: public Subject {
         int getPlayerCount() const;
         int getCurrentPlayerIndex() const;
 
-        void addPlayer(std::unique_ptr<Player> player);   // take over ownership of player
 
         //ctor
         Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2); 
         ~Game();
-
-        //void startGame();
         
         bool processCommand(const string& cmd);
         void gameLoop();       // returns true if successful, otherwise false
@@ -43,8 +40,7 @@ class Game: public Subject {
         void switchTurn();
         void initializeBoard();
         bool moveLink(Link *link, char d);              // returns true if move was successful, false if not
-        void initalizeLinks(Player *player, vector<string> linksString);
-        void initalizeAbilites(string a1, string a2);
+        void initalizeLinks(Player *player, const vector<string> &linksString);
         int checkWin();                                 // 0 = no win, 1 = player one wins, 2 = player two wins
 };
 

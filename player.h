@@ -44,7 +44,7 @@ class Player {
         
         void addLink(unique_ptr<Link> link);
         void addAbility(unique_ptr<Ability> ability);
-        void addAbility(const string &abilitiesstr); // takes the string from input
+        void addAbilities(const string &abilitiesstr); // takes the string from input
         void useAbility(int abilityID, Link &targetLink);
         void useAbility(int abilityID, Cell &targetCell);
 
@@ -52,10 +52,6 @@ class Player {
         void setDownloadedViruses(int i);
 
         void displayAbilities() const;
-
-
-
-        
 };
 
 #endif

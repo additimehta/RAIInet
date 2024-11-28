@@ -7,28 +7,16 @@ using namespace std;
 Game::Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false) {
     players.push_back(std::make_unique<Player>(0, 0, 0, board.get()));
     players.push_back(std::make_unique<Player>(1, 0, 0, board.get()));
-    initalizeAbilites(a1, a2);
+    players[0]->addAbilities(a1);
+    players[1]->addAbilities(a2);  
     initalizeLinks(players[0].get(), links1);
     initalizeLinks(players[1].get(), links2);
     initializeBoard();
-}//work on the game ctor 
-
-
-
-
+}
 
 Game::~Game() {}
 
-
-/*
-void Game::startGame() {
-    players.push_back(std::make_unique<Player>(1, 0, 0));
-    players.push_back(std::make_unique<Player>(2, 0, 0));
-}
-
-*/
-
-void Game::initalizeLinks(Player *player, vector<string> linksString) {
+void Game::initalizeLinks(Player *player, const vector<string> &linksString) {
     for (int i = 0; i < 8; ++i) {
         string link = linksString[i];
         string type(1, link[0]);
@@ -41,13 +29,6 @@ void Game::initalizeLinks(Player *player, vector<string> linksString) {
         }
     }
 }
-
-void Game::initalizeAbilites(const string a1, const string a2) {
-    players[0]->addAbility(a1);
-    players[1]->addAbility(a2);  
-}
-
-
 
 void Game::initializeBoard() {
     int height = board->getHeight();
@@ -83,11 +64,9 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         return false;
     }
 
-
     bool found = false;
     int currentRow = -1, currentCol = -1;
 
-    
     for (int i = 0; i < board->getHeight(); ++i) {              // Finding the current position of the link
         for (int j = 0; j < board->getWidth(); ++j) {
             if (board->getCell(i, j)->getLink() == link) {
@@ -157,7 +136,6 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
     */
 
 
-
     // functionality for firewall and amplifier
     if (newCol >= 0 && newCol <= 7 && newRow >= 0 && newRow <= 7) {
         Cell *cell = board->getCell(newRow, newCol);
@@ -186,6 +164,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         }
     }
 
+
     if (newCol < 0 || newCol > 7) {         // cannot ever move out of columns
         return false;
     }
@@ -197,7 +176,7 @@ bool Game::moveLink(Link *link, char d) {                       // returns true 
         return false;
     }
 
-    if( newRow >= 0 && newRow <= 7) {
+    if (newRow >= 0 && newRow <= 7) {
         if (board->getCell(newRow, newCol)->getIsServerPort()) {        // check if own player tries to move in own server port
             if (this->currentPlayerIndex == 0 && newRow == 0) {
                 return false;
@@ -336,18 +315,13 @@ Link *Game::charToLink(char linkChar) {
     }
 }
 
-void Game::addPlayer(std::unique_ptr<Player> player) {
-    players.emplace_back(std::move(player));
-}
 
-void Game::switchTurn() {       // need to add funcitonality to only iterate over "alive" players
+void Game::switchTurn() {   // need to add funcitonality to only iterate over "alive" players when playing with more than 2 players
     currentPlayerIndex++;
     if (currentPlayerIndex >= getPlayerCount()) {
         currentPlayerIndex = 0;
     }
 }
-
-
 
 bool Game::processCommand(const string& input) {
     istringstream stream(input);
@@ -363,7 +337,7 @@ bool Game::processCommand(const string& input) {
             notifyObservers();
         }
         else {
-            std::cout << "Move not valid";
+            std::cout << "Move not valid" << std::endl;
         }
             
     }else if (cmd == "abilities") {
@@ -372,19 +346,17 @@ bool Game::processCommand(const string& input) {
     }else if (cmd == "ability") {
         int abilityID;
         stream >> abilityID;
-        int row;
-        int col;
-        char linkChar;
         char nextChar;
         stream >> nextChar;
         if (nextChar <= '9' && nextChar >= '0') { // inputted a target cell
-            row = nextChar - '0';
+            int row = nextChar - '0';
+            int col;
             stream >> col;
             Cell *cell = getBoard()->getCell(row, col);
             getPlayer(currentPlayerIndex)->useAbility(abilityID, *cell);
         }
         else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
-            linkChar = nextChar;
+            char linkChar = nextChar;
             Link *link = charToLink(linkChar); 
             getPlayer(currentPlayerIndex)->useAbility(abilityID, *link);
         }
@@ -402,7 +374,7 @@ bool Game::processCommand(const string& input) {
     }
     else if (cmd == "quit") {
         return false;
-    }// add checwin 
+    }
     return true;
 }
 
@@ -414,7 +386,7 @@ void Game::gameLoop() {
         }
         int winStatus = checkWin();
         if (winStatus != 0) {
-            cout << "Player " << winStatus << " wins !" << endl; 
+            cout << "Player " << winStatus << " wins!" << endl; 
         }
     }
 }

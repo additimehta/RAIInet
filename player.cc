@@ -13,8 +13,7 @@ void Player::addAbility(unique_ptr<Ability> ability) {             // take over 
     abilities.emplace_back(std::move(ability));
 }
 
-
-void Player::addAbility(const string &a) {
+void Player::addAbilities(const string &a) {
     for(size_t i = 0; i < 5; i++) {
         if(a[i] == 'P') {
             addAbility(std::make_unique<Polarize>(this));
