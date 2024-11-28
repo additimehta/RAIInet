@@ -35,12 +35,16 @@ void Player::addAbilities(const string &a) {
     }
 }
 
-void Player::useAbility(int abilityID, Link &targetLink) {          // abilityID should be 0-indexed
-    abilities.at(abilityID)->use(targetLink);
+bool Player::useAbility(int abilityID, Link &targetLink) {          // abilityID should be 0-indexed
+    Ability *ability = getAbility(0);
+    if (ability->hasBeenUsed()) return false;
+    return abilities.at(abilityID)->use(targetLink);
 }
 
-void Player::useAbility(int abilityID, Cell &targetCell) {          // abilityID should be 0-indexed
-    abilities.at(abilityID)->use(targetCell);
+bool Player::useAbility(int abilityID, Cell &targetCell) {          // abilityID should be 0-indexed
+    Ability *ability = getAbility(0);
+    if (ability->hasBeenUsed()) return false;
+    return abilities.at(abilityID)->use(targetCell);
 }
 
 int Player::getPlayerID() const {
