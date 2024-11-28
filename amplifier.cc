@@ -1,5 +1,4 @@
 #include "amplifier.h"
-#include "player.h"
 
 Amplifier::Amplifier(Player *player): Ability{player} {}
 
