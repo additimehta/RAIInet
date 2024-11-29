@@ -21,7 +21,7 @@ class GraphicalObserver : public Observer {
 
     void drawPlayerInfo(Player *player, int yOff)
     void drawBoard();
-    void drawPlayerInfo(Player *opponent, int yOff);
+    void drawOpponentInfo(*opponent, int yOff);
     //void drawBoard(const std::vector<std::vector<int>>& board);
     void notify() override;
 
