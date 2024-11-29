@@ -4,7 +4,7 @@ using namespace std;
 
 
 Link::Link(string type, int strength, bool isRevealed, Player *owner, char letter):
-    type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner}, letter{letter}, cell{nullptr}, abilityStatus{0} {}
+    type{type}, strength{strength}, isRevealed{isRevealed}, owner{owner}, letter{letter}, abilityStatus{0}, cell{nullptr} {}
 
 bool Link::operator==(const Link& other) const {
     return this->type == other.type &&
