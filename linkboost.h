@@ -8,7 +8,7 @@ class Linkboost: public Ability {
     public:
         Linkboost(Player* player);
         bool use(Link &targetLink) override;
-        bool use(Cell &targeyCell) override;
+        bool use(Cell &targetCell) override;
         std::string getName() const override;
 };
 
