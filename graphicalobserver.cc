@@ -25,7 +25,7 @@ void GraphicalObserver::notify() {
     int abilitiesCount2 = player2->getAbilitiesCount();
 
     drawPlayerInfo(0, downloadedData1, downloadedViruses1, abilitiesCount1, 10, 10);
-    drawPlayerInfo(1, downloadedData2, downloadedViruses2, abilitiesCount2, 10, 30);
+    drawPlayerInfo(1, downloadedData2, downloadedViruses2, abilitiesCount2, 10, 40);
 }
 
 GraphicalObserver::~GraphicalObserver() {
