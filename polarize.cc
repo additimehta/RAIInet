@@ -7,7 +7,7 @@ Polarize::Polarize(Player* player): Ability {player} {}
 bool Polarize::use(Link &targetLink) {
 
     if(isUsed) {
-        std::cout << "Polarize ability has already been used!";
+        std::cout << "Polarize ability has already been used!" << std::endl;
         return false;
     }
 

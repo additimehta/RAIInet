@@ -5,6 +5,11 @@ Firewall::Firewall(Player *player): Ability{player} {}
 
 
 bool Firewall::use(Cell &targetCell) {
+    if(isUsed) {
+        std::cout << "Firewall ability has already been used!" << std::endl;
+        return false;
+    }
+
     if (targetCell.getIsServerPort() || targetCell.getLink() != nullptr || targetCell.isAmplifier || targetCell.isFirewall) {
         return false;
     }
@@ -15,7 +20,7 @@ bool Firewall::use(Cell &targetCell) {
     else {
         targetCell.underneathLetter = 'w';
     }
-    isUsed = true;
+    markUsed();
     return true;
 }
 
