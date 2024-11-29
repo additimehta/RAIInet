@@ -36,13 +36,14 @@ void Player::addAbilities(const string &a) {
 }
 
 bool Player::useAbility(int abilityID, Link &targetLink) {          // abilityID should be 0-indexed
-    Ability *ability = getAbility(0);
+    Ability *ability = getAbility(abilityID);
     if (ability->hasBeenUsed()) return false;
     return abilities.at(abilityID)->use(targetLink);
+
 }
 
 bool Player::useAbility(int abilityID, Cell &targetCell) {          // abilityID should be 0-indexed
-    Ability *ability = getAbility(0);
+    Ability *ability = getAbility(abilityID);
     if (ability->hasBeenUsed()) return false;
     return abilities.at(abilityID)->use(targetCell);
 }
@@ -68,7 +69,13 @@ Ability *Player::getAbility(int AbilityID) const {                 // abilityID 
 }
 
 int Player::getAbilitiesCount() const {
-    return abilities.size();
+    int count = 0;
+    for(size_t i = 0; i < abilities.size(); i++) {
+        if(!abilities[i]->hasBeenUsed()){
+            count++;
+        }
+    }
+    return count;
 }
 
 Board *Player::getBoard() const {
