@@ -5,10 +5,38 @@
 GraphicalObserver::GraphicalObserver(Game *game, Player *player): game {game}, window {new Xwindow(500, 500)}, player {player} {}
 
 
-void GraphicalObserver::drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount, int x, int y) {
-    window->drawString(x, y, "Player " + std::to_string(playerIndex + 1) + ":");
-    window->drawString(x, y + 20, "Downloaded: " + std::to_string(downloadedData) + "D, " + std::to_string(downloadedViruses) + "V");
+void GraphicalObserver::drawPlayerInfo(Player *player, int yOff) {
+   int xOff = 10;
+   window->drawString(xOff, yOff, "Player " + std::to_string(player->getPlayerID() + 1) + ":");
+   yOff += 20;
+   window->drawString(xOff, yOff, "Downloaded: " + std::to_string(player->getDownloadedData()) + "D, " + std::to_string(player->getDownloadedViruses()) + "V");
+   yOff += 20;
+
+
+   window->drawString(xOff, yOff, "Abilities: " + std::to_string(player->getAbilitiesCount()));
+   yOff += 20;
+
+
+   char linkID = 'a';
+   for (int i = 0; i < 8; ++i) {
+       Link* link = player->getLink(i);
+       std::string linkInfo = std::string(1, linkID) + ": " + link->getType() + std::to_string(link->getStrength());
+       if (i == 4) {
+           window->drawString(xOff, yOff, linkInfo);
+           yOff += 20;
+       } else {
+           window->drawString(xOff, yOff, linkInfo + " ");
+       }
+       linkID++;
+   }
 }
+
+
+
+
+void GraphicalObserver::drawOpponentInfo(Player *opponent, int yOff) {
+int xOff = 10;
+   window->draw
 
  void GraphicalObserver::drawBoard() {
     Board *board = game->getBoard();
