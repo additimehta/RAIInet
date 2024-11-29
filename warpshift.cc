@@ -17,7 +17,25 @@ bool WarpShift::use(Link &targetLink) {
     srand(time(0));
     int randomIndex = rand() % emptyCells.size();
     Cell* newCell = emptyCells[randomIndex];
-    targetLink.setCell(newCell);
+    Board *board = player->getBoard();
+    int currentRow;
+    int currentCol;
+    bool found;
+    for (int i = 0; i < board->getHeight(); ++i) {              // Finding the current position of the link
+        for (int j = 0; j < board->getWidth(); ++j) {
+            if (board->getCell(i, j)->getLink() == &targetLink) {
+                currentRow = i;
+                currentCol = j;
+                found = true;
+                break;
+            }
+        }
+        if (found) break;
+    }
+    Cell *currentCell = board->getCell(currentCol, currentCol);
+    currentCell->removeLink();
+    newCell->placeLink(&targetLink);
+    markUsed();
     return true;
 }
 
