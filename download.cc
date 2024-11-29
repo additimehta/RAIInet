@@ -8,11 +8,18 @@ Download::Download(Player *player) : Ability(player) {}
 
 
 bool Download::use(Link &targetLink) {
+    if(isUsed) {
+        std::cout << "Download ability has already been used!" << std::endl;
+        return false;
+    }
+
+
     if(targetLink.getOwner() == player) {
-        cout << "invalid link";
+        cout << "Please put the opponent's link  ";
         return false;
     }
     player->setDownloadedData(player->getDownloadedData() + 1);
+    markUsed();
     return true;
 }
 

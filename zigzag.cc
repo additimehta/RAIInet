@@ -5,8 +5,15 @@ Zigzag::Zigzag(Player* player): Ability {player} {}
 
 
 bool Zigzag::use(Link &targetLink) {
+    if(isUsed) {
+        std::cout << "Zigzag ability has already been used!" << std::endl;
+        return false;
+    }
+
     targetLink.setAbilityStatus(2);
+    markUsed();
     return true;
+
 }
 
 
