@@ -355,14 +355,18 @@ bool Game::processCommand(const string& input) {
             Cell *cell = getBoard()->getCell(row, col);
             if (!getPlayer(currentPlayerIndex)->useAbility(abilityID - 1, *cell)) {
                 cout << "Ability not used correctly or is already used" << endl;
+                return true;
             }
+            notifyObservers();
         }
         else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
             char linkChar = nextChar;
             Link *link = charToLink(linkChar); 
-            if (getPlayer(currentPlayerIndex)->useAbility(abilityID - 1, *link)) {
+            if (!getPlayer(currentPlayerIndex)->useAbility(abilityID - 1, *link)) {
                 cout << "Ability not used correctly or is already used" << endl;
+                return true;
             }
+            notifyObservers();
         }
         else {
             std::cout << "Ability cmd not correct";
