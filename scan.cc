@@ -13,6 +13,6 @@ bool Scan::use(Link &targetLink) {
     return true;
 }
 
-string Scan::getName() const {
+std::string Scan::getName() const {
     return "Scan";
 }

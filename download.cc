@@ -16,6 +16,6 @@ bool Download::use(Link &targetLink) {
     return true;
 }
 
-string Download::getName() const {
+std::string Download::getName() const {
     return "Download";
 }

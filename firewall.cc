@@ -19,6 +19,6 @@ bool Firewall::use(Cell &targetCell) {
     return true;
 }
 
-string Firewall::getName() const {
+std::string Firewall::getName() const {
     return "Firewall";
 }

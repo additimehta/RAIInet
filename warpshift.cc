@@ -21,7 +21,7 @@ bool WarpShift::use(Link &targetLink) {
     return true;
 }
 
-string WarpShift::getName() const {
+std::string WarpShift::getName() const {
     return "Warp shift";
 }
 

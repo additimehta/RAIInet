@@ -10,6 +10,6 @@ bool Linkboost::use(Link &targetLink) {
     return true;
 }
 
-string Linkboost::getName() const {
+std::string Linkboost::getName() const {
     return "Link boost";
 }

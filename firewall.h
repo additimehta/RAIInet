@@ -8,7 +8,7 @@ class Firewall: public Ability {
     public:
         Firewall(Player* player);
         bool use(Cell &targetCell) override;
-        string getName() const override;
+        std::string getName() const override;
 };
 
 #endif

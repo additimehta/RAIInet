@@ -1,7 +1,6 @@
 #include "polarize.h"
 
 
-
 Polarize::Polarize(Player* player): Ability {player} {}
 
 
@@ -23,12 +22,6 @@ bool Polarize::use(Link &targetLink) {
 
 }
 
-
-bool Polarize::use(Cell &targetCell) {
-    std::cout << "Polarize ability cannot be used on a Cell." << std::endl;
-    return false;
-}
-
-string Polarize::getName() const {
+std::string Polarize::getName() const {
     return "Polarize";
 }

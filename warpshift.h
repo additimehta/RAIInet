@@ -8,7 +8,7 @@ class WarpShift: public Ability {
     public:
         WarpShift(Player* player);
         bool use(Link &targetLink) override;
-        string getName() const override;
+        std::string getName() const override;
 };
 
 #endif

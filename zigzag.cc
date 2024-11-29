@@ -8,6 +8,6 @@ bool Zigzag::use(Link &targetLink) {
     targetLink.setAbilityStatus(2);
 }
 
-string Zigzag::getName() const {
+std::string Zigzag::getName() const {
     return "Zigzag";
 }

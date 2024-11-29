@@ -14,6 +14,6 @@ bool Amplifier::use(Cell &targetCell) {
     return true;
 }
 
-string Amplifier::getName() const {
+std::string Amplifier::getName() const {
     return "Amplifier";
 }

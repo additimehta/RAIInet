@@ -8,7 +8,7 @@ class Amplifier: public Ability {
     public:
         Amplifier(Player* player);
         bool use(Cell &targetCell) override;
-        string getName() const override;
+        std::string getName() const override;
 };
 
 #endif
