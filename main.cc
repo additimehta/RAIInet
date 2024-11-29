@@ -30,8 +30,8 @@ int main(int argc, char* argv[]) {
 
     vector<unique_ptr<Observer>> observers;
 
-    string abilities1 = "PPPPP";
-    string abilities2 = "PPPPP";
+    string abilities1 = "LFDSP";
+    string abilities2 = "LFDSP";
     vector<string> links1 = {"V1", "V2", "V3", "V4", "D1", "D2", "D3", "D4"};
     vector<string> links2 = {"V1", "V2", "V3", "V4", "D1", "D2", "D3", "D4"};
     
