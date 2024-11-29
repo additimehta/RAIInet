@@ -15,7 +15,6 @@ using namespace std;
 
 
 class Game: public Subject {
-    vector<Observer*> observers;
     std::unique_ptr<Board> board;
     std::vector<std::unique_ptr<Player>> players;
     int currentPlayerIndex;

@@ -71,7 +71,6 @@ int main(int argc, char* argv[]) {
     if(graphicsON) {
         game.enableGraphics();
         observers.emplace_back(make_unique<GraphicalObserver>(&game, game.getPlayer(0)));
-        observers.emplace_back(make_unique<GraphicalObserver>(&game, game.getPlayer(1)));
     }
     game.notifyObservers();
     game.gameLoop();

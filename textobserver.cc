@@ -17,21 +17,19 @@ void TextObserver::notify() {
     "D, " << player->getDownloadedViruses() << "V " << endl;
 
     cout << "Abilities: " << player->getAbilitiesCount() << endl;
-    char linkID = 'a';
     vector<Link *> links;
     for (int i = 0; i < 8; ++i) {
         links.emplace_back(player->getLink(i));
     };
 
     for(size_t i = 0; i < links.size(); ++i) {
-        cout << linkID << ": " << links[i]->getType() << links[i]->getStrength();
+        cout << links[i]->getLetter() << ": " << links[i]->getType() << links[i]->getStrength();
         if(i == 3) {
             cout << endl;
         }else {
             cout << " ";
         }
 
-        linkID++;
     }
     cout << endl;
     cout << "========" << endl;
@@ -60,7 +58,6 @@ void TextObserver::notify() {
     "D" << opponent->getDownloadedViruses() << "V " << endl;
     cout << "Abilities: " << opponent->getAbilitiesCount() << endl;
 
-    char opplinkID = 'A';
 
     vector<Link *> oppLinks;
     for (int i = 0; i < 8; ++i) {
@@ -70,9 +67,9 @@ void TextObserver::notify() {
     for(size_t i = 0; i < oppLinks.size(); ++i) {
 
         if(oppLinks[i]->getIsRevealed()) {
-            cout << opplinkID << ": " << oppLinks[i]->getType() << oppLinks[i]->getStrength();
+            cout << oppLinks[i]->getLetter() << ": " << oppLinks[i]->getType() << oppLinks[i]->getStrength();
         }else {
-            cout << opplinkID << ": ?";
+            cout << oppLinks[i]->getLetter()  << ": ?";
         }
         if(i == 3) {
             cout << endl;
@@ -80,7 +77,6 @@ void TextObserver::notify() {
             cout << " ";
         }
 
-        opplinkID++;
     }
 
     cout << endl;   

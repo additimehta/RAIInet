@@ -12,6 +12,7 @@ Game::Game(const string a1, const string a2, const vector<string>& links1, const
     initalizeLinks(players[0].get(), links1);
     initalizeLinks(players[1].get(), links2);
     initializeBoard();
+
 }
 
 Game::~Game() {}
@@ -22,7 +23,6 @@ void Game::notifyObservers() {
     observers[currentPlayerIndex]->notify();
     if (graphicsEnabled) {
         observers[2]->notify();
-        observers[3]->notify();
     }
 }
 

@@ -103,13 +103,14 @@ void GraphicalObserver::drawOpponentInfo(Player *opponent, int yOff) {
                 }
                 std::string s = string(1, letter);
                 window->fillRectangle(i * 50, 120 + (j * 50), 50, 50, colour);
-                // window->drawString(40 + (i * 25), 40 + (j * 25), s);
+                window->drawString((i * 50) + 25, 120 + (j * 50) + 25, s);
             }
         }
 }
 
 
 void GraphicalObserver::notify() {
+    window->fillRectangle(0, 0, 400, 750, Xwindow::White);
     Player* player1 = game->getPlayer(0);
     Player* player2 = game->getPlayer(1);
     drawPlayerInfo(player1, 20);
