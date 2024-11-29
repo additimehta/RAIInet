@@ -19,7 +19,6 @@ class Link {
     Player *owner;
     char letter;
     int abilityStatus; // one is default, two is linkboost, three is zigzag
-    Cell *cell;
 
     public:
         //getters
@@ -37,8 +36,6 @@ class Link {
         void setStrength(int strength);
         void setType(string type);
         void setAbilityStatus(int status);
-        void setCell(Cell *cell);
-
 };
 
 #endif
