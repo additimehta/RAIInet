@@ -34,9 +34,40 @@ void GraphicalObserver::drawPlayerInfo(Player *player, int yOff) {
 
 
 
+
 void GraphicalObserver::drawOpponentInfo(Player *opponent, int yOff) {
 int xOff = 10;
-   window->draw
+   window->drawString(xOff, yOff, "Opponent " + std::to_string(opponent->getPlayerID() + 1) + ":");
+   yOff += 20;
+
+
+   window->drawString(xOff, yOff, "Downloaded: " + std::to_string(opponent->getDownloadedData()) + "D, " + std::to_string(opponent->getDownloadedViruses()) + "V");
+   yOff += 20;
+  window->drawString(xOff, yOff, "Abilities: " + std::to_string(opponent->getAbilitiesCount()));
+   yOff += 20;
+  
+   char linkID = 'A';
+   for (int i = 0; i < 8; ++i) {
+       Link* link = opponent->getLink(i);
+       std::string linkInfo;
+       if (link->getIsRevealed()) {
+           linkInfo = std::string(1, linkID) + ": " + link->getType() + std::to_string(link->getStrength());
+       } else {
+           linkInfo = std::string(1, linkID) + ": ?";
+       }
+
+
+       if (i == 4) {
+           window->drawString(xOff, yOff, linkInfo);
+           yOff += 20;
+       } else {
+           window->drawString(xOff, yOff, linkInfo + " ");
+       }
+       linkID++;
+   }
+}
+
+
 
  void GraphicalObserver::drawBoard() {
     Board *board = game->getBoard();
