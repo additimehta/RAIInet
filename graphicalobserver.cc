@@ -2,7 +2,7 @@
 
 
 
-GraphicalObserver::GraphicalObserver(Game *game, Player *player): window {new Xwindow(400, 750)}, game {game}, player {player} {}
+GraphicalObserver::GraphicalObserver(Game *game, Player *player): window {std::make_unique<Xwindow>(400, 750)}, game {game}, player {player} {game->attach(this);}
 
 
 void GraphicalObserver::drawPlayerInfo(Player *player, int yOff) {
@@ -118,5 +118,5 @@ void GraphicalObserver::notify() {
 }
 
 GraphicalObserver::~GraphicalObserver() {
-    delete window;
+    game->detach(this);
 }

@@ -9,10 +9,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 
 class GraphicalObserver : public Observer {
-    Xwindow* window;
+    std::unique_ptr<Xwindow> window;
     Game* game;
     Player *player;
     public:

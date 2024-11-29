@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Game::Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false) {
+Game::Game(const string a1, const string a2, const vector<string>& links1, const vector<string>& links2) : board(std::make_unique<Board>(8, 8)), currentPlayerIndex(0), gameOver(false), graphicsEnabled{false} {
     players.push_back(std::make_unique<Player>(0, 0, 0, board.get()));
     players.push_back(std::make_unique<Player>(1, 0, 0, board.get()));
     players[0]->addAbilities(a1);
@@ -15,6 +15,16 @@ Game::Game(const string a1, const string a2, const vector<string>& links1, const
 }
 
 Game::~Game() {}
+
+void Game::enableGraphics() {graphicsEnabled = true;}
+
+void Game::notifyObservers() {
+    observers[currentPlayerIndex]->notify();
+    if (graphicsEnabled) {
+        observers[2]->notify();
+        observers[3]->notify();
+    }
+}
 
 void Game::initalizeLinks(Player *player, const vector<string> &linksString) {
     for (int i = 0; i < 8; ++i) {
@@ -334,9 +344,7 @@ bool Game::processCommand(const string& input) {
         Link *link = charToLink(linkChar);
         if (moveLink(link, direction)) {
             switchTurn();
-            observers[currentPlayerIndex]->notify();
-            observers[2]->notify();
-            observers[3]->notify();
+            notifyObservers();
         }
         else {
             std::cout << "Move not valid" << std::endl;
@@ -359,9 +367,7 @@ bool Game::processCommand(const string& input) {
                 cout << "Ability not used correctly or is already used" << endl;
                 return true;
             }
-            observers[currentPlayerIndex]->notify();
-            observers[2]->notify();
-            observers[3]->notify();
+            notifyObservers();
         }
         else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
             char linkChar = nextChar;
@@ -370,18 +376,14 @@ bool Game::processCommand(const string& input) {
                 cout << "Ability not used correctly or is already used" << endl;
                 return true;
             }
-            observers[currentPlayerIndex]->notify();
-            observers[2]->notify();
-            observers[3]->notify();
+            notifyObservers();
         }
         else {
             std::cout << "Ability cmd not correct";
         }
     }
     else if (cmd == "board") {
-        observers[currentPlayerIndex]->notify();
-        observers[2]->notify();
-        observers[3]->notify();
+        notifyObservers();
     }
     else if (cmd == "sequence") {
         string filename;

@@ -16,10 +16,5 @@ void Subject::detach(Observer* o) {
   }
 }
 
-void Subject::notifyObservers() {
-  for (auto &obs : observers) {
-    obs->notify();
-  }
-}
 
 Subject::~Subject() {}

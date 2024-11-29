@@ -20,6 +20,7 @@ class Game: public Subject {
     std::vector<std::unique_ptr<Player>> players;
     int currentPlayerIndex;
     bool gameOver;
+    bool graphicsEnabled;
     Link *charToLink(char linkChar);
 
     public:
@@ -28,6 +29,8 @@ class Game: public Subject {
         Player *getPlayer(const int playerID) const;
         int getPlayerCount() const;
         int getCurrentPlayerIndex() const;
+        void enableGraphics();
+        void notifyObservers() override;
 
 
         //ctor
