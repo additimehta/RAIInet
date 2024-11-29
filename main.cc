@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
     Game game(abilities1, abilities2, links1, links2);
     observers.emplace_back(make_unique<TextObserver>(&game, 0));
     if(graphicsON) {
-       GraphicalObserver* graphicalObserver = new GraphicalObserver(&game);
+       GraphicalObserver* graphicalObserver = new GraphicalObserver(&game, game.getPlayer(0));
        game.attach(graphicalObserver);
     }
    // game.startGame();
