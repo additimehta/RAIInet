@@ -2,11 +2,7 @@
 
 
 
-GraphicalObserver::GraphicalObserver(Game *game, Board board){
-    this->game = game;
-    this->board = board;
-    window = new Xwindow(500, 500);  
-}
+GraphicalObserver::GraphicalObserver(Game *game, Player *player): game {game}, window {new Xwindow(500, 500)}, player {player} {}
 
 
 void GraphicalObserver::drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount, int x, int y) {
@@ -15,12 +11,36 @@ void GraphicalObserver::drawPlayerInfo(int playerIndex, int downloadedData, int 
 }
 
  void GraphicalObserver::drawBoard() {
-   int colour = Xwindow::White;
-       
+    Board *board = game->getBoard();
+    char letter;
+    int colour = Xwindow::White;
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
-                if(board.getCell(i, j)->getIsServerPort)
-                window->fillRectangle(i * 50, j * 50, 50, 50, colour);
+                Cell *cell = board->getCell(i, j);
+                if (cell->getIsServerPort()) {
+                    colour = Xwindow::Blue;
+                    letter = 'S';
+                } 
+                else if (cell->getLink() == nullptr) {   // no link on cell
+                    colour = Xwindow::White;
+                    letter = cell->underneathLetter;
+                } 
+                else if (cell->getLink()->getOwner() == player) { // player's own link
+                    if (cell->getLink()->getType() == "V") colour = Xwindow::Red;
+                    else colour = Xwindow::Green;
+                    letter = cell->getOwner();
+                }
+                else if (cell->getLink()->getIsRevealed() == true) { // opponents revealed link
+                    if (cell->getLink()->getType() == "V") colour = Xwindow::Red;
+                    else colour = Xwindow::Green;
+                    letter = cell->getOwner();
+                }
+                else {
+                    colour = Xwindow::Black;
+                }
+                std::string s = string(1, letter);
+                window->fillRectangle(40 + (i * 50), 40 + (j * 50), 50, 50, colour);
+                window->drawString(40 + (i * 25), 40 + (j * 25), s);
             }
         }
 }

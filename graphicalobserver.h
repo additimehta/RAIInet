@@ -14,9 +14,9 @@
 class GraphicalObserver : public Observer {
     Xwindow* window;
     Game* game;
-    Board board;
+    Player *player;
     public:
-    GraphicalObserver(Game *game, Board board);
+    GraphicalObserver(Game *game, Player *player);
     ~GraphicalObserver();
 
     void drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount, int x, int y);
