@@ -32,7 +32,7 @@ bool WarpShift::use(Link &targetLink) {
         }
         if (found) break;
     }
-    Cell *currentCell = board->getCell(currentCol, currentCol);
+    Cell *currentCell = board->getCell(currentRow, currentCol);
     currentCell->removeLink();
     newCell->placeLink(&targetLink);
     markUsed();
