@@ -14,6 +14,14 @@ bool Amplifier::use(Cell &targetCell) {
     return true;
 }
 
+
+bool Amplifier::use(Link &targetLink) {
+    std::cout << "Polarize ability can only be used on Cells!";
+    return false;
+}
+
 std::string Amplifier::getName() const {
     return "Amplifier";
 }
+
+

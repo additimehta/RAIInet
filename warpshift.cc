@@ -21,6 +21,11 @@ bool WarpShift::use(Link &targetLink) {
     return true;
 }
 
+bool WarpShift::use(Cell &targetCell) {
+    std::cout << "Warp Shift ability can only be used on Links!";
+    return false;
+}
+
 std::string WarpShift::getName() const {
     return "Warp shift";
 }

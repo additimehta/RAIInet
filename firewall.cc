@@ -19,6 +19,11 @@ bool Firewall::use(Cell &targetCell) {
     return true;
 }
 
+bool Firewall::use(Link &targetLink) {
+    std::cout << "Firewall ability can only be used on Cells!";
+    return false;
+}
+
 std::string Firewall::getName() const {
     return "Firewall";
 }

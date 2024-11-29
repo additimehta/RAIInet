@@ -7,6 +7,7 @@
 class Scan: public Ability {
     public:
     bool use(Link &targetLink) override;
+    bool use(Cell &targetCell) override;
     Scan(Player* player);
     std::string getName() const override;
 };

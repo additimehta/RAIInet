@@ -8,6 +8,7 @@ class Zigzag: public Ability {
     public:
         Zigzag(Player* player);
         bool use(Link &targetLink) override;
+        bool use(Cell &targetCell) override;
         std::string getName() const override;
 };
 

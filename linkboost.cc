@@ -10,6 +10,11 @@ bool Linkboost::use(Link &targetLink) {
     return true;
 }
 
+bool Linkboost::use(Cell &targetCell) {
+    std::cout << "Linkboost ability can only be used on Links!";
+    return false;
+}
+
 std::string Linkboost::getName() const {
     return "Link boost";
 }

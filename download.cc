@@ -16,6 +16,13 @@ bool Download::use(Link &targetLink) {
     return true;
 }
 
+
+bool Download::use(Cell &targetCell) {
+    std::cout << "Download ability can only be used on Links!";
+    return false;
+}
+
+
 std::string Download::getName() const {
     return "Download";
 }
