@@ -12,6 +12,15 @@ void GraphicalObserver::drawPlayerInfo(int playerIndex, int downloadedData, int 
     window->drawString(x, y + 20, "Downloaded: " + std::to_string(downloadedData) + "D, " + std::to_string(downloadedViruses) + "V");
 }
 
+ void GraphicalObserver::drawBoard() {
+   int colour = Xwindow::Blue;
+       
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                window->fillRectangle(i * 50, j * 50, 50, 50, colour);
+            }
+        }
+}
 
 
 void GraphicalObserver::notify() {

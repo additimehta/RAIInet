@@ -18,6 +18,7 @@ class GraphicalObserver : public Observer {
     ~GraphicalObserver();
 
     void drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount, int x, int y);
+    void drawBoard();
     //void drawBoard(const std::vector<std::vector<int>>& board);
     void notify() override;
 
