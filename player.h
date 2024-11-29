@@ -8,7 +8,7 @@
 #include "cell.h"
 #include "ability.h"
 #include "polarize.h"
-#include "linkboost.cc"
+#include "linkboost.h"
 #include "firewall.h"
 #include "download.h"
 #include "zigzag.h"
