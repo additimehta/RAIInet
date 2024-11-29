@@ -100,7 +100,7 @@ void Player::displayAbilities() const {
     } else {
         for (int i = 0; i < 5; ++i) {
             cout << i + 1 << ". " << abilities[i]->getName()
-                << " " << (abilities[i]->hasBeenUsed() ? "Used" : "Unused") 
+                << " " << (abilities[i]->hasBeenUsed() ? "(USED)" : "(UNUSED)") 
                 << endl;
         }
     }
