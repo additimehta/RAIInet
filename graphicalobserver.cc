@@ -12,6 +12,8 @@ void GraphicalObserver::drawPlayerInfo(int playerIndex, int downloadedData, int 
     window->drawString(x, y + 20, "Downloaded: " + std::to_string(downloadedData) + "D, " + std::to_string(downloadedViruses) + "V");
 }
 
+
+
 void GraphicalObserver::notify() {
     Player* player1 = game->getPlayer(0);
     Player* player2 = game->getPlayer(1);
@@ -25,7 +27,7 @@ void GraphicalObserver::notify() {
     int abilitiesCount2 = player2->getAbilitiesCount();
 
     drawPlayerInfo(0, downloadedData1, downloadedViruses1, abilitiesCount1, 10, 10);
-    drawPlayerInfo(1, downloadedData2, downloadedViruses2, abilitiesCount2, 10, 40);
+    drawPlayerInfo(1, downloadedData2, downloadedViruses2, abilitiesCount2, 10, 50);
 }
 
 GraphicalObserver::~GraphicalObserver() {
