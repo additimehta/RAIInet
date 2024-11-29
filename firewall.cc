@@ -6,7 +6,6 @@ Firewall::Firewall(Player *player): Ability{player} {}
 
 bool Firewall::use(Cell &targetCell) {
     if(isUsed) {
-        std::cout << "Firewall ability has already been used!" << std::endl;
         return false;
     }
 
@@ -25,7 +24,6 @@ bool Firewall::use(Cell &targetCell) {
 }
 
 bool Firewall::use(Link &targetLink) {
-    std::cout << "Firewall ability can only be used on Cells!";
     return false;
 }
 

@@ -5,7 +5,6 @@ Amplifier::Amplifier(Player *player): Ability{player} {}
 
 bool Amplifier::use(Cell &targetCell) {
     if(isUsed) {
-        std::cout << "Amplifier ability has already been used!" << std::endl;
         return false;
     }
 
@@ -21,7 +20,6 @@ bool Amplifier::use(Cell &targetCell) {
 
 
 bool Amplifier::use(Link &targetLink) {
-    std::cout << "Polarize ability can only be used on Cells!";
     return false;
 }
 

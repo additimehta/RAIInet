@@ -6,7 +6,7 @@ Zigzag::Zigzag(Player* player): Ability {player} {}
 
 bool Zigzag::use(Link &targetLink) {
     if(isUsed) {
-        std::cout << "Zigzag ability has already been used!" << std::endl;
+        std::cout << "Zigzag ability has already been used!\n";
         return false;
     }
 
@@ -18,7 +18,6 @@ bool Zigzag::use(Link &targetLink) {
 
 
 bool Zigzag::use(Cell &targetCell) {
-    std::cout << "Zigzag ability can only be used on Links!";
     return false;
 }
 

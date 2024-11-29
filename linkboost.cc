@@ -5,7 +5,6 @@ Linkboost::Linkboost(Player* player): Ability {player} {}
 
 bool Linkboost::use(Link &targetLink) {
     if(isUsed) {
-        std::cout << "Scan ability has already been used!" << std::endl;
         return false;
     }
     targetLink.setAbilityStatus(1);
@@ -15,7 +14,6 @@ bool Linkboost::use(Link &targetLink) {
 }
 
 bool Linkboost::use(Cell &targetCell) {
-    std::cout << "Linkboost ability can only be used on Links!";
     return false;
 }
 
