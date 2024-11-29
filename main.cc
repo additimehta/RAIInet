@@ -11,6 +11,7 @@
 #include "player.h"
 #include "subject.h"
 #include "textobserver.h"
+#include "graphicalobserver.cc"
 #include "game.h"
 
 using namespace std;
@@ -29,6 +30,7 @@ vector<string> parseLinks(const string &filename) {
 int main(int argc, char* argv[]) {
 
     vector<unique_ptr<Observer>> observers;
+    bool graphicsON = false;
 
     string abilities1 = "LFDSP";
     string abilities2 = "LFDSP";
@@ -55,13 +57,19 @@ int main(int argc, char* argv[]) {
                 links2 = links;
             }
         } else if (arg == "-graphics") {
-            // enable graphics
+            graphicsON = true;
+            
         }
     }
 
 
+
     Game game(abilities1, abilities2, links1, links2);
     observers.emplace_back(make_unique<TextObserver>(&game, 0));
+    if(graphicsON) {
+       GraphicalObserver* graphicalObserver = new GraphicalObserver(500, 500);
+       game.attach(graphicalObserver);
+    }
    // game.startGame();
    // game.startGame();
    // game.initalizeLinks(game.getPlayer(0), links1);

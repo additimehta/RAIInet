@@ -12,13 +12,13 @@
 
 class GraphicalObserver : public Observer {
     Xwindow* window;
-    int boardWidth, boardHeight;
+    Game* game;
     public:
-    GraphicalObserver(int width, int height);
+    GraphicalObserver(Game *game);
     ~GraphicalObserver();
 
-    void drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount, const std::vector<std::string>& abilities);
-    void drawBoard(const std::vector<std::vector<int>>& board);
+    void drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount);
+    //void drawBoard(const std::vector<std::vector<int>>& board);
     void notify() override;
 
 };
