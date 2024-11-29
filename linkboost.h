@@ -4,6 +4,8 @@
 #include "ability.h"
 #include <iostream>
 
+class Player;
+
 class Linkboost: public Ability {
     public:
         Linkboost(Player* player);

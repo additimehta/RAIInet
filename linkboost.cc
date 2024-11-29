@@ -1,7 +1,5 @@
 #include "linkboost.h"
 
-class Player;
-
 Linkboost::Linkboost(Player* player): Ability {player} {}
 
 
