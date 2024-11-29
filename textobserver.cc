@@ -14,7 +14,7 @@ void TextObserver::notify() {
 
     cout << "Player " << player->getPlayerID() + 1 << ":" << endl;
     cout << "Downloaded: "<< player->getDownloadedData()<< 
-    "D" << player->getDownloadedViruses() << "V " << endl;
+    "D, " << player->getDownloadedViruses() << "V " << endl;
 
     cout << "Abilities: " << player->getAbilitiesCount() << endl;
     char linkID = 'a';
