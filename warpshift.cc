@@ -20,7 +20,7 @@ bool WarpShift::use(Link &targetLink) {
     Board *board = player->getBoard();
     int currentRow;
     int currentCol;
-    bool found;
+    bool found = false;
     for (int i = 0; i < board->getHeight(); ++i) {              // Finding the current position of the link
         for (int j = 0; j < board->getWidth(); ++j) {
             if (board->getCell(i, j)->getLink() == &targetLink) {
