@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <random>
+#include <algorithm>
 #include "ability.h"
 #include "board.h"
 #include "cell.h"
@@ -42,6 +44,8 @@ int main(int argc, char* argv[]) {
     string abilities2 = "LFDSP";
     vector<string> links1 = {"V1", "V2", "V3", "V4", "D1", "D2", "D3", "D4"};
     vector<string> links2 = {"V1", "V2", "V3", "V4", "D1", "D2", "D3", "D4"};
+    randomizeLinks(links1);
+    randomizeLinks(links2);
     
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
@@ -67,9 +71,6 @@ int main(int argc, char* argv[]) {
             
         }
     }
-    
-    randomizeLinks(links1);
-    randomizeLinks(links2);
 
 
     Game game(abilities1, abilities2, links1, links2);
