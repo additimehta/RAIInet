@@ -1,8 +1,10 @@
 #include "graphicalobserver.h"
 
 
-GraphicalObserver::GraphicalObserver(Game *game){
+
+GraphicalObserver::GraphicalObserver(Game *game, Board board){
     this->game = game;
+    this->board = board;
     window = new Xwindow(500, 500);  
 }
 
@@ -13,10 +15,11 @@ void GraphicalObserver::drawPlayerInfo(int playerIndex, int downloadedData, int 
 }
 
  void GraphicalObserver::drawBoard() {
-   int colour = Xwindow::Blue;
+   int colour = Xwindow::White;
        
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
+                if(board.getCell(i, j)->getIsServerPort)
                 window->fillRectangle(i * 50, j * 50, 50, 50, colour);
             }
         }

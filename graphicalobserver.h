@@ -4,6 +4,7 @@
 #include "observer.h"
 #include "game.h"
 #include "board.h"
+#include "cell.h"
 #include "window.h"
 #include <iostream>
 #include <vector>
@@ -13,8 +14,9 @@
 class GraphicalObserver : public Observer {
     Xwindow* window;
     Game* game;
+    Board board;
     public:
-    GraphicalObserver(Game *game);
+    GraphicalObserver(Game *game, Board board);
     ~GraphicalObserver();
 
     void drawPlayerInfo(int playerIndex, int downloadedData, int downloadedViruses, int abilitiesCount, int x, int y);
