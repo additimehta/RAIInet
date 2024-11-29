@@ -75,7 +75,7 @@ int xOff = 10;
     int colour = Xwindow::White;
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
-                Cell *cell = board->getCell(i, j);
+                Cell *cell = board->getCell(j, i);
                 if (cell->getIsServerPort()) {
                     colour = Xwindow::Blue;
                     letter = 'S';
@@ -99,7 +99,7 @@ int xOff = 10;
                 }
                 std::string s = string(1, letter);
                 window->fillRectangle(40 + (i * 50), 40 + (j * 50), 50, 50, colour);
-                window->drawString(40 + (i * 25), 40 + (j * 25), s);
+                // window->drawString(40 + (i * 25), 40 + (j * 25), s);
             }
         }
 }
