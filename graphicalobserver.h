@@ -19,7 +19,7 @@ class GraphicalObserver : public Observer {
     GraphicalObserver(Game *game, Player *player);
     ~GraphicalObserver();
 
-    void drawPlayerInfo(Player *player, int yOff)
+    void drawPlayerInfo(Player *player, int yOff);
     void drawBoard();
     void drawOpponentInfo(*opponent, int yOff);
     //void drawBoard(const std::vector<std::vector<int>>& board);
