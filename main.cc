@@ -26,6 +26,12 @@ vector<string> parseLinks(const string &filename) {
     return links;
 }
 
+void randomizeLinks(vector<string> &links) {
+    random_device rd;
+    mt19937 gen(rd());
+    shuffle(links.begin(), links.end(), gen);
+}
+
 
 int main(int argc, char* argv[]) {
 
@@ -61,7 +67,9 @@ int main(int argc, char* argv[]) {
             
         }
     }
-
+    
+    randomizeLinks(links1);
+    randomizeLinks(links2);
 
 
     Game game(abilities1, abilities2, links1, links2);
