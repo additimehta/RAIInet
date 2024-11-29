@@ -22,6 +22,12 @@ bool Polarize::use(Link &targetLink) {
 
 }
 
+bool Polarize::use(Cell &targetCell) {
+    std::cout << "Polarize ability can only be used on Links!";
+    return false;
+}
+
 std::string Polarize::getName() const {
     return "Polarize";
 }
+

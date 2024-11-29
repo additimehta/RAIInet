@@ -7,6 +7,7 @@
 class Polarize: public Ability {
     public:
     bool use(Link &targetLink) override;
+    bool use(Cell &targetCell) override;
     Polarize(Player* player);
     std::string getName() const override;
 };
