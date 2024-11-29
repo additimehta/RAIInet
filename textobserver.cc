@@ -25,7 +25,7 @@ void TextObserver::notify() {
 
     for(size_t i = 0; i < links.size(); ++i) {
         cout << linkID << ": " << links[i]->getType() << links[i]->getStrength();
-        if(i == 4) {
+        if(i == 3) {
             cout << endl;
         }else {
             cout << " ";
@@ -74,7 +74,7 @@ void TextObserver::notify() {
         }else {
             cout << opplinkID << ": ?";
         }
-        if(i == 4) {
+        if(i == 3) {
             cout << endl;
         }else {
             cout << " ";

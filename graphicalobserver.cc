@@ -2,7 +2,7 @@
 
 
 
-GraphicalObserver::GraphicalObserver(Game *game, Player *player): game {game}, window {new Xwindow(500, 500)}, player {player} {}
+GraphicalObserver::GraphicalObserver(Game *game, Player *player): window {new Xwindow(400, 750)}, game {game}, player {player} {}
 
 
 void GraphicalObserver::drawPlayerInfo(Player *player, int yOff) {
@@ -21,11 +21,13 @@ void GraphicalObserver::drawPlayerInfo(Player *player, int yOff) {
    for (int i = 0; i < 8; ++i) {
        Link* link = player->getLink(i);
        std::string linkInfo = std::string(1, linkID) + ": " + link->getType() + std::to_string(link->getStrength());
-       if (i == 4) {
+       if (i == 3) {
            window->drawString(xOff, yOff, linkInfo);
            yOff += 20;
+           xOff = 10;
        } else {
            window->drawString(xOff, yOff, linkInfo + " ");
+           xOff += 40;
        }
        linkID++;
    }
@@ -36,7 +38,7 @@ void GraphicalObserver::drawPlayerInfo(Player *player, int yOff) {
 
 
 void GraphicalObserver::drawOpponentInfo(Player *opponent, int yOff) {
-int xOff = 10;
+   int xOff = 10;
    window->drawString(xOff, yOff, "Opponent " + std::to_string(opponent->getPlayerID() + 1) + ":");
    yOff += 20;
 
@@ -57,11 +59,13 @@ int xOff = 10;
        }
 
 
-       if (i == 4) {
+       if (i == 3) {
            window->drawString(xOff, yOff, linkInfo);
            yOff += 20;
+           xOff = 10;
        } else {
            window->drawString(xOff, yOff, linkInfo + " ");
+           xOff += 30;
        }
        linkID++;
    }
@@ -98,7 +102,7 @@ int xOff = 10;
                     colour = Xwindow::Black;
                 }
                 std::string s = string(1, letter);
-                window->fillRectangle(40 + (i * 50), 40 + (j * 50), 50, 50, colour);
+                window->fillRectangle(i * 50, 120 + (j * 50), 50, 50, colour);
                 // window->drawString(40 + (i * 25), 40 + (j * 25), s);
             }
         }
@@ -108,9 +112,9 @@ int xOff = 10;
 void GraphicalObserver::notify() {
     Player* player1 = game->getPlayer(0);
     Player* player2 = game->getPlayer(1);
-    drawPlayerInfo(player1, 0);
+    drawPlayerInfo(player1, 20);
     drawBoard();
-    drawPlayerInfo(player2, 200);
+    drawOpponentInfo(player2, 570);
 }
 
 GraphicalObserver::~GraphicalObserver() {

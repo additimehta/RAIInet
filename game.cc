@@ -334,7 +334,9 @@ bool Game::processCommand(const string& input) {
         Link *link = charToLink(linkChar);
         if (moveLink(link, direction)) {
             switchTurn();
-            notifyObservers();
+            observers[currentPlayerIndex]->notify();
+            observers[2]->notify();
+            observers[3]->notify();
         }
         else {
             std::cout << "Move not valid" << std::endl;
@@ -357,7 +359,9 @@ bool Game::processCommand(const string& input) {
                 cout << "Ability not used correctly or is already used" << endl;
                 return true;
             }
-            notifyObservers();
+            observers[currentPlayerIndex]->notify();
+            observers[2]->notify();
+            observers[3]->notify();
         }
         else if ((nextChar <= 'z' && nextChar >= 'a') || (nextChar <= 'Z' && nextChar >= 'A')) {     // inputted a target link
             char linkChar = nextChar;
@@ -366,14 +370,18 @@ bool Game::processCommand(const string& input) {
                 cout << "Ability not used correctly or is already used" << endl;
                 return true;
             }
-            notifyObservers();
+            observers[currentPlayerIndex]->notify();
+            observers[2]->notify();
+            observers[3]->notify();
         }
         else {
             std::cout << "Ability cmd not correct";
         }
     }
     else if (cmd == "board") {
-        notifyObservers();
+        observers[currentPlayerIndex]->notify();
+        observers[2]->notify();
+        observers[3]->notify();
     }
     else if (cmd == "sequence") {
         string filename;
