@@ -106,9 +106,9 @@ void Player::displayAbilities() const {
         cout << "No abilities assigned." << endl;
     } else {
         for (int i = 0; i < 5; ++i) {
-            if(!abilities[i]->hasBeenUsed()) {
-                cout << i + 1 << ". "  << abilities[i]->getName() << endl;
-            }
+            cout << i + 1 << ". " << abilities[i]->getName()
+                << " " << (abilities[i]->hasBeenUsed() ? "(USED)" : "(UNUSED)") 
+                << endl;
         }
     }
 }
