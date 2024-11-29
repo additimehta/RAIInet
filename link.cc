@@ -33,6 +33,10 @@ void Link::setAbilityStatus(int status) {
 int Link::getStrength() const {
     return strength;
 }
+void Link::setCell(Cell *cell) {
+    this->cell = cell;
+}
+
 
 bool Link::getIsRevealed() const {
     return isRevealed;
